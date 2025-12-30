@@ -1,0 +1,453 @@
+/*!*********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./app/admin/login/AdminLogin.module.css ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************/
+.AdminLogin_container__6TM_U {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+    background-size: 400% 400%;
+    animation: AdminLogin_gradientShift__bRaO5 15s ease infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes AdminLogin_gradientShift__bRaO5 {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Animated Background Elements */
+.AdminLogin_container__6TM_U::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    animation: AdminLogin_pulse__UDPOg 4s ease-in-out infinite;
+}
+
+@keyframes AdminLogin_pulse__UDPOg {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+/* Floating Music Notes */
+.AdminLogin_musicNote__9TebT {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 2rem;
+    animation: AdminLogin_float__q6g0a 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.AdminLogin_musicNote__9TebT:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+.AdminLogin_musicNote__9TebT:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+.AdminLogin_musicNote__9TebT:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 2s; }
+.AdminLogin_musicNote__9TebT:nth-child(4) { bottom: 15%; right: 10%; animation-delay: 3s; }
+.AdminLogin_musicNote__9TebT:nth-child(5) { top: 50%; left: 5%; animation-delay: 4s; }
+.AdminLogin_musicNote__9TebT:nth-child(6) { top: 60%; right: 5%; animation-delay: 5s; }
+
+@keyframes AdminLogin_float__q6g0a {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+    50% { transform: translateY(-30px) rotate(180deg); opacity: 0.6; }
+}
+
+/* Instrument Icons Container */
+.AdminLogin_instrumentsContainer__Py22D {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.AdminLogin_instrument__tNFwy {
+    position: absolute;
+    font-size: 8rem;
+    opacity: 0.12;
+    animation: AdminLogin_instrumentFloat__5Qf9x 8s ease-in-out infinite;
+    filter: blur(1px);
+}
+
+.AdminLogin_instrument__tNFwy:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+.AdminLogin_instrument__tNFwy:nth-child(2) { top: 20%; right: 8%; animation-delay: 1.5s; }
+.AdminLogin_instrument__tNFwy:nth-child(3) { bottom: 20%; left: 10%; animation-delay: 3s; }
+.AdminLogin_instrument__tNFwy:nth-child(4) { bottom: 15%; right: 5%; animation-delay: 4.5s; }
+
+@keyframes AdminLogin_instrumentFloat__5Qf9x {
+    0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+    50% { transform: translateY(-30px) scale(1.15) rotate(5deg); }
+}
+
+/* Small Animated Guitar in Container */
+.AdminLogin_smallGuitar__pqFCX {
+    position: absolute;
+    font-size: 2.5rem;
+    opacity: 0.4;
+    animation: AdminLogin_guitarSpin__pGBRL 4s ease-in-out infinite;
+    z-index: 5;
+}
+
+.AdminLogin_smallGuitar__pqFCX:nth-child(1) { top: 15%; right: 20%; animation-delay: 0s; }
+.AdminLogin_smallGuitar__pqFCX:nth-child(2) { bottom: 25%; left: 25%; animation-delay: 2s; }
+.AdminLogin_smallGuitar__pqFCX:nth-child(3) { top: 50%; right: 30%; animation-delay: 1s; }
+
+@keyframes AdminLogin_guitarSpin__pGBRL {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg) scale(1); 
+        opacity: 0.4;
+    }
+    25% { 
+        transform: translateY(-15px) rotate(90deg) scale(1.1); 
+        opacity: 0.6;
+    }
+    50% { 
+        transform: translateY(-25px) rotate(180deg) scale(1.2); 
+        opacity: 0.5;
+    }
+    75% { 
+        transform: translateY(-15px) rotate(270deg) scale(1.1); 
+        opacity: 0.6;
+    }
+}
+
+.AdminLogin_loginBox__HEejy {
+    background: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    z-index: 10;
+    animation: AdminLogin_slideUp__ioDQL 0.6s ease-out;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@keyframes AdminLogin_slideUp__ioDQL {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.AdminLogin_title__DveNb {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    position: relative;
+    display: block;
+    width: 100%;
+    letter-spacing: 2px;
+    min-height: 3rem;
+    animation: 
+        AdminLogin_titleWave__ROnPM 3s ease-in-out infinite;
+}
+
+/* Ensure text is visible with gradient */
+.AdminLogin_title__DveNb span {
+    display: inline-block;
+    color: #667eea; /* Base color - always visible */
+    font-weight: 700;
+    animation: 
+        AdminLogin_letterBounce__zHGbn 1.5s ease-in-out infinite;
+    position: relative;
+}
+
+/* Apply gradient effect if supported */
+@supports (-webkit-background-clip: text) {
+    .AdminLogin_title__DveNb span {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: 
+            AdminLogin_letterBounce__zHGbn 1.5s ease-in-out infinite,
+            AdminLogin_gradientFlow__oRbi5 4s ease infinite;
+    }
+}
+
+@keyframes AdminLogin_titleGlow___PxCz {
+    from { filter: brightness(1) drop-shadow(0 0 5px rgba(102, 126, 234, 0.5)); }
+    to { filter: brightness(1.3) drop-shadow(0 0 15px rgba(102, 126, 234, 0.8)); }
+}
+
+@keyframes AdminLogin_titleWave__ROnPM {
+    0%, 100% { transform: translateY(0) scale(1); }
+    25% { transform: translateY(-8px) scale(1.05); }
+    50% { transform: translateY(0) scale(1); }
+    75% { transform: translateY(-5px) scale(1.02); }
+}
+
+@keyframes AdminLogin_gradientFlow__oRbi5 {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Musical Notes around Title */
+.AdminLogin_title__DveNb::before {
+    content: '♪';
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    animation: AdminLogin_noteFloatLeft__XVyP4 2s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+.AdminLogin_title__DveNb::after {
+    content: '♫';
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    animation: AdminLogin_noteFloatRight__xI9Os 2s ease-in-out infinite 0.5s;
+    opacity: 0.8;
+}
+
+@keyframes AdminLogin_noteFloatLeft__XVyP4 {
+    0%, 100% { 
+        transform: translateY(-50%) translateX(0) rotate(0deg); 
+        opacity: 0.8;
+    }
+    50% { 
+        transform: translateY(-60%) translateX(-10px) rotate(-15deg); 
+        opacity: 1;
+    }
+}
+
+@keyframes AdminLogin_noteFloatRight__xI9Os {
+    0%, 100% { 
+        transform: translateY(-50%) translateX(0) rotate(0deg); 
+        opacity: 0.8;
+    }
+    50% { 
+        transform: translateY(-60%) translateX(10px) rotate(15deg); 
+        opacity: 1;
+    }
+}
+
+/* Individual Letter Animation - moved to above */
+
+.AdminLogin_title__DveNb span:nth-child(1) { animation-delay: 0s; }
+.AdminLogin_title__DveNb span:nth-child(2) { animation-delay: 0.1s; }
+.AdminLogin_title__DveNb span:nth-child(3) { animation-delay: 0.2s; }
+.AdminLogin_title__DveNb span:nth-child(4) { animation-delay: 0.3s; }
+.AdminLogin_title__DveNb span:nth-child(5) { animation-delay: 0.4s; }
+.AdminLogin_title__DveNb span:nth-child(6) { animation-delay: 0.5s; }
+.AdminLogin_title__DveNb span:nth-child(7) { animation-delay: 0.6s; }
+.AdminLogin_title__DveNb span:nth-child(8) { animation-delay: 0.7s; }
+.AdminLogin_title__DveNb span:nth-child(9) { animation-delay: 0.8s; }
+.AdminLogin_title__DveNb span:nth-child(10) { animation-delay: 0.9s; }
+.AdminLogin_title__DveNb span:nth-child(11) { animation-delay: 1s; }
+
+@keyframes AdminLogin_letterBounce__zHGbn {
+    0%, 100% { 
+        transform: translateY(0) scale(1); 
+    }
+    25% { 
+        transform: translateY(-5px) scale(1.1); 
+    }
+    50% { 
+        transform: translateY(0) scale(1); 
+    }
+    75% { 
+        transform: translateY(-3px) scale(1.05); 
+    }
+}
+
+.AdminLogin_form__uXOV0 {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.AdminLogin_inputGroup__GmLIx {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.AdminLogin_inputGroup__GmLIx label {
+    font-weight: 600;
+    color: #555;
+    font-size: 0.95rem;
+    margin-left: 0.25rem;
+}
+
+.AdminLogin_input__3cNAf {
+    padding: 0.9rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.AdminLogin_input__3cNAf:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 
+        0 0 0 4px rgba(102, 126, 234, 0.1),
+        0 4px 12px rgba(102, 126, 234, 0.15);
+    transform: translateY(-2px);
+}
+
+.AdminLogin_input__3cNAf::placeholder {
+    color: #999;
+}
+
+.AdminLogin_error__2fdrb {
+    color: #d32f2f;
+    font-size: 0.875rem;
+    text-align: center;
+    padding: 0.75rem;
+    background: rgba(211, 47, 47, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(211, 47, 47, 0.2);
+    animation: AdminLogin_shake__UHhef 0.5s ease-in-out;
+}
+
+@keyframes AdminLogin_shake__UHhef {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.AdminLogin_button__bmNLf {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    position: relative;
+    overflow: visible;
+    text-align: center;
+}
+
+/* Musical animation for Login button text */
+.AdminLogin_buttonText__C5e6g {
+    display: inline-block;
+    position: relative;
+}
+
+.AdminLogin_buttonText__C5e6g span {
+    display: inline-block;
+    animation: AdminLogin_buttonLetterBounce__Law61 1.2s ease-in-out infinite;
+    color: white;
+    font-weight: 600;
+}
+
+.AdminLogin_buttonText__C5e6g span:nth-child(1) { animation-delay: 0s; }
+.AdminLogin_buttonText__C5e6g span:nth-child(2) { animation-delay: 0.1s; }
+.AdminLogin_buttonText__C5e6g span:nth-child(3) { animation-delay: 0.2s; }
+.AdminLogin_buttonText__C5e6g span:nth-child(4) { animation-delay: 0.3s; }
+.AdminLogin_buttonText__C5e6g span:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes AdminLogin_buttonLetterBounce__Law61 {
+    0%, 100% { 
+        transform: translateY(0) scale(1); 
+    }
+    25% { 
+        transform: translateY(-3px) scale(1.1); 
+    }
+    50% { 
+        transform: translateY(0) scale(1); 
+    }
+    75% { 
+        transform: translateY(-2px) scale(1.05); 
+    }
+}
+
+/* Musical note in button */
+.AdminLogin_buttonText__C5e6g::before {
+    content: '🎵';
+    display: inline-block;
+    margin-right: 0.5rem;
+    animation: AdminLogin_buttonNoteBounce__7fHMw 1.5s ease-in-out infinite;
+}
+
+@keyframes AdminLogin_buttonNoteBounce__7fHMw {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg); 
+    }
+    25% { 
+        transform: translateY(-5px) rotate(-10deg); 
+    }
+    50% { 
+        transform: translateY(0) rotate(0deg); 
+    }
+    75% { 
+        transform: translateY(-3px) rotate(10deg); 
+    }
+}
+
+.AdminLogin_button__bmNLf::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.AdminLogin_button__bmNLf:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.AdminLogin_button__bmNLf:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.AdminLogin_button__bmNLf:active {
+    transform: translateY(0);
+}
+
+.AdminLogin_button__bmNLf:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Decorative Elements */
+.AdminLogin_decorativeLine__SqPpO {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #667eea, transparent);
+    margin: 1.5rem 0;
+    animation: AdminLogin_lineExpand__MlVGz 2s ease-in-out infinite;
+}
+
+@keyframes AdminLogin_lineExpand__MlVGz {
+    0%, 100% { width: 0; }
+    50% { width: 100%; }
+}

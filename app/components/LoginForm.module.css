@@ -1,0 +1,585 @@
+.loginContainer {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating Music Notes */
+.musicNote {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 2rem;
+  animation: floatNote 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.musicNote:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+.musicNote:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+.musicNote:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 2s; }
+.musicNote:nth-child(4) { bottom: 15%; right: 10%; animation-delay: 3s; }
+.musicNote:nth-child(5) { top: 50%; left: 5%; animation-delay: 4s; }
+.musicNote:nth-child(6) { top: 60%; right: 5%; animation-delay: 5s; }
+
+@keyframes floatNote {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+  50% { transform: translateY(-30px) rotate(180deg); opacity: 0.6; }
+}
+
+/* Animated Instruments Container */
+.instrumentsContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.instrument {
+  position: absolute;
+  font-size: 8rem;
+  opacity: 0.12;
+  animation: instrumentFloat 8s ease-in-out infinite;
+  filter: blur(1px);
+}
+
+.instrument:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+.instrument:nth-child(2) { top: 20%; right: 8%; animation-delay: 1.5s; }
+.instrument:nth-child(3) { bottom: 20%; left: 10%; animation-delay: 3s; }
+.instrument:nth-child(4) { bottom: 15%; right: 5%; animation-delay: 4.5s; }
+
+@keyframes instrumentFloat {
+  0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+  50% { transform: translateY(-30px) scale(1.15) rotate(5deg); }
+}
+
+/* Small Animated Guitars */
+.smallGuitar {
+  position: absolute;
+  font-size: 2.5rem;
+  opacity: 0.4;
+  animation: guitarSpin 4s ease-in-out infinite;
+  z-index: 2;
+}
+
+.smallGuitar:nth-child(1) { top: 15%; right: 20%; animation-delay: 0s; }
+.smallGuitar:nth-child(2) { bottom: 25%; left: 25%; animation-delay: 2s; }
+.smallGuitar:nth-child(3) { top: 50%; right: 30%; animation-delay: 1s; }
+
+@keyframes guitarSpin {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg) scale(1); 
+    opacity: 0.4;
+  }
+  25% { 
+    transform: translateY(-15px) rotate(90deg) scale(1.1); 
+    opacity: 0.6;
+  }
+  50% { 
+    transform: translateY(-25px) rotate(180deg) scale(1.2); 
+    opacity: 0.5;
+  }
+  75% { 
+    transform: translateY(-15px) rotate(270deg) scale(1.1); 
+    opacity: 0.6;
+  }
+}
+
+.loginLeft {
+  flex: 2;
+  position: relative;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.abstractBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.shape1 {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, #c12727, #8b1a1a);
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  opacity: 0.6;
+  filter: blur(40px);
+  animation: float 8s ease-in-out infinite;
+}
+
+.shape2 {
+  position: absolute;
+  top: 50%;
+  right: 15%;
+  width: 250px;
+  height: 250px;
+  background: linear-gradient(135deg, #2c2c2c, #c12727);
+  border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  opacity: 0.5;
+  filter: blur(50px);
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+.shape3 {
+  position: absolute;
+  bottom: 15%;
+  left: 20%;
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, #c12727, #1a1a1a);
+  border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
+  opacity: 0.4;
+  filter: blur(45px);
+  animation: float 12s ease-in-out infinite;
+}
+
+.shape4 {
+  position: absolute;
+  top: 30%;
+  right: 30%;
+  width: 180px;
+  height: 180px;
+  background: linear-gradient(135deg, #2c2c2c, #8b1a1a);
+  border-radius: 50% 40% 60% 30% / 40% 50% 50% 60%;
+  opacity: 0.5;
+  filter: blur(35px);
+  animation: float 9s ease-in-out infinite reverse;
+}
+
+.dots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle, rgba(193, 39, 39, 0.3) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.3;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(30px, -30px) rotate(120deg);
+  }
+  66% {
+    transform: translate(-20px, 20px) rotate(240deg);
+  }
+}
+
+.loginRight {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: #1a1a1a;
+}
+
+.loginForm {
+  background: #2c2c2c;
+  border-radius: 20px;
+  padding: 50px 40px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.welcomeTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  text-align: left;
+  position: relative;
+  display: block;
+  width: 100%;
+  letter-spacing: 2px;
+  min-height: 3rem;
+  animation: titleWave 3s ease-in-out infinite;
+}
+
+/* Musical animations for Welcome back title */
+.welcomeTitle span {
+  display: inline-block;
+  color: white;
+  font-weight: 700;
+  animation: letterBounce 1.5s ease-in-out infinite;
+  position: relative;
+}
+
+@keyframes titleWave {
+  0%, 100% { transform: translateY(0) scale(1); }
+  25% { transform: translateY(-8px) scale(1.05); }
+  50% { transform: translateY(0) scale(1); }
+  75% { transform: translateY(-5px) scale(1.02); }
+}
+
+@keyframes letterBounce {
+  0%, 100% { 
+    transform: translateY(0) scale(1); 
+  }
+  25% { 
+    transform: translateY(-5px) scale(1.1); 
+  }
+  50% { 
+    transform: translateY(0) scale(1); 
+  }
+  75% { 
+    transform: translateY(-3px) scale(1.05); 
+  }
+}
+
+/* Musical Notes around Title */
+.welcomeTitle::before {
+  content: '♪';
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  animation: noteFloatLeft 2s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+.welcomeTitle::after {
+  content: '♫';
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  animation: noteFloatRight 2s ease-in-out infinite 0.5s;
+  opacity: 0.8;
+}
+
+@keyframes noteFloatLeft {
+  0%, 100% { 
+    transform: translateY(-50%) translateX(0) rotate(0deg); 
+    opacity: 0.8;
+  }
+  50% { 
+    transform: translateY(-60%) translateX(-10px) rotate(-15deg); 
+    opacity: 1;
+  }
+}
+
+@keyframes noteFloatRight {
+  0%, 100% { 
+    transform: translateY(-50%) translateX(0) rotate(0deg); 
+    opacity: 0.8;
+  }
+  50% { 
+    transform: translateY(-60%) translateX(10px) rotate(15deg); 
+    opacity: 1;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.inputGroup {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.input {
+  width: 100%;
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  color: var(--white);
+  font-size: 1rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+  transition: all 0.3s ease;
+}
+
+.input:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.input:focus {
+  border-color: #667eea;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 0 0 4px rgba(102, 126, 234, 0.2),
+    0 8px 25px rgba(102, 126, 234, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.input:focus::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-20px) scale(0.9);
+  opacity: 0;
+}
+
+/* Animated label effect */
+.inputGroup label {
+  position: absolute;
+  left: 20px;
+  top: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.input:focus + label,
+.input:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 15px;
+  font-size: 0.85rem;
+  color: #667eea;
+  background: rgba(44, 44, 44, 0.9);
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+/* Icon container for inputs */
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 18px;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.input:focus ~ .inputIcon {
+  color: #667eea;
+  transform: scale(1.1);
+}
+
+.inputWithIcon {
+  padding-left: 50px;
+}
+
+.forgotLink {
+  position: absolute;
+  right: 0;
+  top: -25px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.forgotLink:hover {
+  color: #667eea;
+  transform: translateX(-3px);
+  text-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+}
+
+.loginButton {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: var(--white);
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  position: relative;
+  overflow: visible;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.loginButton:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.loginButton:active {
+  transform: translateY(0);
+}
+
+/* Musical animation for Login button text */
+.buttonText {
+  display: inline-block;
+  position: relative;
+}
+
+.buttonText span {
+  display: inline-block;
+  animation: buttonLetterBounce 1.2s ease-in-out infinite;
+  color: white;
+  font-weight: 600;
+}
+
+.buttonText span:nth-child(1) { animation-delay: 0s; }
+.buttonText span:nth-child(2) { animation-delay: 0.1s; }
+.buttonText span:nth-child(3) { animation-delay: 0.2s; }
+.buttonText span:nth-child(4) { animation-delay: 0.3s; }
+.buttonText span:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes buttonLetterBounce {
+  0%, 100% { 
+    transform: translateY(0) scale(1); 
+  }
+  25% { 
+    transform: translateY(-3px) scale(1.1); 
+  }
+  50% { 
+    transform: translateY(0) scale(1); 
+  }
+  75% { 
+    transform: translateY(-2px) scale(1.05); 
+  }
+}
+
+/* Musical note in button */
+.buttonText::before {
+  content: '🎵';
+  display: inline-block;
+  margin-right: 0.5rem;
+  animation: buttonNoteBounce 1.5s ease-in-out infinite;
+}
+
+@keyframes buttonNoteBounce {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg); 
+  }
+  25% { 
+    transform: translateY(-5px) rotate(-10deg); 
+  }
+  50% { 
+    transform: translateY(0) rotate(0deg); 
+  }
+  75% { 
+    transform: translateY(-3px) rotate(10deg); 
+  }
+}
+
+.signupText {
+  margin-top: 30px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+.signupLink {
+  color: #c12727;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.signupLink:hover {
+  color: #a02020;
+  text-decoration: underline;
+}
+
+@media (max-width: 968px) {
+  .loginContainer {
+    flex-direction: column;
+  }
+
+  .loginLeft {
+    display: none;
+  }
+
+  .loginRight {
+    flex: 1;
+    width: 100%;
+    padding: 30px 20px;
+    min-height: 100vh;
+  }
+
+  .loginForm {
+    padding: 40px 30px;
+    max-width: 100%;
+  }
+
+  .welcomeTitle {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .loginLeft {
+    display: none;
+  }
+
+  .loginRight {
+    padding: 20px 15px;
+    min-height: 100vh;
+    justify-content: center;
+  }
+
+  .loginForm {
+    padding: 30px 20px;
+    max-width: 100%;
+  }
+
+  .welcomeTitle {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+
+  .form {
+    gap: 20px;
+  }
+}
+

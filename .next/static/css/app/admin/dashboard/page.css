@@ -1,0 +1,189 @@
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./app/admin/dashboard/Dashboard.module.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
+.Dashboard_container__stCza {
+    min-height: 100vh;
+    background-color: #f9fafb;
+}
+
+.Dashboard_header__CW_9L {
+    background-color: #ffffff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.Dashboard_header__CW_9L h1 {
+    font-size: 1.5rem;
+    color: #111827;
+    margin: 0;
+}
+
+.Dashboard_logoutButton__H4yJ_ {
+    background-color: #ef4444;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.Dashboard_logoutButton__H4yJ_:hover {
+    background-color: #dc2626;
+}
+
+.Dashboard_main__r8C3w {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.Dashboard_statsGrid__4GysP {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 1.5rem;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.Dashboard_card__TPiPX {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.Dashboard_card__TPiPX:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.Dashboard_card__TPiPX h3 {
+    font-size: 1rem;
+    color: #6b7280;
+    margin: 0 0 0.5rem 0;
+    font-weight: 500;
+}
+
+.Dashboard_statValue__GY_Qf {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+
+.Dashboard_warning__LPzj3 {
+    color: #d97706;
+}
+
+.Dashboard_success__V7Y6N {
+    color: #059669;
+}
+
+.Dashboard_courseList__WUeWi {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.Dashboard_courseList__WUeWi li {
+    font-size: 0.9rem;
+    color: #374151;
+    padding: 2px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.Dashboard_courseList__WUeWi li:last-child {
+    border-bottom: none;
+}
+
+.Dashboard_sectionTitle__oVqGH {
+    font-size: 1.25rem;
+    color: #374151;
+    margin-bottom: 1.5rem;
+}
+
+.Dashboard_tableContainer__fzR2_ {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.Dashboard_table__vRdG8 {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.Dashboard_table__vRdG8 th,
+.Dashboard_table__vRdG8 td {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.Dashboard_table__vRdG8 th {
+    background-color: #f3f4f6;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+.Dashboard_table__vRdG8 tr:last-child td {
+    border-bottom: none;
+}
+
+.Dashboard_progressBarContainer__W5ltv {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.Dashboard_progressBar__1NNPm {
+    height: 8px;
+    background-color: #3b82f6;
+    border-radius: 4px;
+}
+
+.Dashboard_progressText__DemfE {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.Dashboard_status__Bvq4q {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.Dashboard_active__5jCw3 {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.Dashboard_completed__KVJwu {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.Dashboard_dropped__YUNEc {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+@media (max-width: 768px) {
+    .Dashboard_statsGrid__4GysP {
+        grid-template-columns: 1fr;
+    }
+}
