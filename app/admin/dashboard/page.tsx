@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { mockStudentAnalytics, mockDashboardStats, mockHeadDashboardStats, mockBranchExpenses, StudentAnalytics, DashboardStats, BranchStats, BranchExpense } from '@/app/utils/mockData'
+import { mockStudentAnalytics, mockDashboardStats, mockHeadDashboardStats, mockBranchExpenses, StudentAnalytics, DashboardStats as ImportedDashboardStats, BranchStats, BranchExpense } from '@/app/utils/mockData'
 import styles from './Dashboard.module.css'
 
 import SideNav from './SideNav'
@@ -29,7 +29,7 @@ interface StudentRecord {
     donation_id: number | null
 }
 
-interface DashboardStats {
+interface RootDashboardStats {
     totalStudents: number
     totalFees: number
     recentAdmissions: number
@@ -43,7 +43,7 @@ interface DashboardStats {
 export default function AdminDashboardPage() {
     const router = useRouter()
     const [analytics, setAnalytics] = useState<StudentAnalytics[]>([])
-    const [stats, setStats] = useState<DashboardStats | null>(null)
+    const [stats, setStats] = useState<ImportedDashboardStats | null>(null)
     const [headStats, setHeadStats] = useState<BranchStats[] | null>(null)
     const [isHeadAdmin, setIsHeadAdmin] = useState(false)
     const [isBranchAdmin, setIsBranchAdmin] = useState(false)
@@ -59,7 +59,7 @@ export default function AdminDashboardPage() {
     const [selectedBranch, setSelectedBranch] = useState<string>('all')
     const [searchQuery, setSearchQuery] = useState<string>('')
     const [loading, setLoading] = useState(false)
-    const [dashboardStats, setDashboardStats] = useState<DashboardStats | null>(null)
+    const [dashboardStats, setDashboardStats] = useState<RootDashboardStats | null>(null)
 
     useEffect(() => {
         const adminRole = localStorage.getItem('adminRole')
