@@ -1,0 +1,123 @@
+.loginContainer {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+}
+
+.loginCard {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.title {
+    color: #8b0000;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+}
+
+.errorMessage {
+    background: #fee;
+    color: #c33;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label {
+    color: #333;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.input {
+    padding: 12px 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #8b0000;
+}
+
+.input:disabled {
+    background: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.loginButton {
+    background: #8b0000;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+.loginButton:hover:not(:disabled) {
+    background: #a00000;
+}
+
+.loginButton:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.footer {
+    margin-top: 30px;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+}
+
+.registerLink {
+    color: #8b0000;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.registerLink:hover {
+    text-decoration: underline;
+}
+
+
+

@@ -203,37 +203,51 @@ export default function RegisterForm() {
                 <title>Admission Form - ${data.name}</title>
                 <style>
                     @media print {
-                        @page { margin: 20mm; }
-                        body { margin: 0; }
+                        @page { 
+                            margin: 8mm;
+                            size: A4;
+                        }
+                        body { 
+                            margin: 0;
+                            padding: 0;
+                        }
                         .no-print { display: none; }
+                        * {
+                            -webkit-print-color-adjust: exact;
+                            print-color-adjust: exact;
+                        }
                     }
                     body {
                         font-family: Arial, sans-serif;
-                        padding: 20px;
+                        padding: 8px;
                         color: #000;
                         background: white;
+                        font-size: 10px;
+                        line-height: 1.2;
                     }
                     .header {
                         display: flex;
                         justify-content: space-between;
                         align-items: flex-start;
-                        border-bottom: 3px solid #8b0000;
-                        padding-bottom: 20px;
-                        margin-bottom: 30px;
+                        border-bottom: 2px solid #8b0000;
+                        padding-bottom: 8px;
+                        margin-bottom: 10px;
                     }
                     .header-left {
                         text-align: left;
                     }
                     .header-left h1 {
                         color: #8b0000;
-                        margin: 0 0 5px 0;
-                        font-size: 24px;
+                        margin: 0 0 2px 0;
+                        font-size: 16px;
                         font-weight: bold;
+                        line-height: 1.1;
                     }
                     .header-left p {
-                        margin: 3px 0;
-                        font-size: 14px;
+                        margin: 1px 0;
+                        font-size: 9px;
                         color: #333;
+                        line-height: 1.1;
                     }
                     .header-right {
                         text-align: right;
@@ -241,62 +255,62 @@ export default function RegisterForm() {
                     .header-right h2 {
                         color: #8b0000;
                         margin: 0;
-                        font-size: 24px;
+                        font-size: 16px;
                         font-weight: bold;
+                        line-height: 1.1;
+                    }
+                    .header-right p {
+                        margin: 3px 0 0 0;
+                        font-size: 9px;
+                        color: #333;
                     }
                     .form-section {
-                        margin-bottom: 25px;
+                        margin-bottom: 8px;
                         page-break-inside: avoid;
                     }
                     .form-section h3 {
                         color: #8b0000;
-                        border-bottom: 2px solid #8b0000;
-                        padding-bottom: 8px;
-                        margin-bottom: 15px;
-                        font-size: 18px;
+                        border-bottom: 1.5px solid #8b0000;
+                        padding-bottom: 3px;
+                        margin-bottom: 6px;
+                        font-size: 11px;
+                        font-weight: bold;
                     }
                     .form-container {
                         display: flex;
-                        gap: 30px;
-                        margin-bottom: 20px;
+                        gap: 10px;
+                        margin-bottom: 8px;
                     }
                     .form-fields {
                         flex: 1;
-                        border: 2px solid #333;
-                        padding: 20px;
+                        border: 1.5px solid #333;
+                        padding: 8px;
                     }
                     .form-field {
                         display: flex;
                         align-items: center;
-                        margin-bottom: 15px;
-                        min-height: 25px;
+                        margin-bottom: 6px;
+                        min-height: 18px;
                     }
                     .form-field label {
                         font-weight: bold;
-                        min-width: 120px;
-                        margin-right: 10px;
+                        min-width: 80px;
+                        margin-right: 5px;
                         color: #000;
+                        font-size: 9px;
                     }
                     .form-field .line {
                         flex: 1;
                         border-bottom: 1px solid #000;
-                        min-height: 20px;
-                        padding-left: 5px;
+                        min-height: 16px;
+                        padding-left: 3px;
                         color: #000;
-                    }
-                    .form-field-inline {
-                        display: flex;
-                        align-items: center;
-                        gap: 15px;
-                    }
-                    .form-field-inline .form-field {
-                        flex: 1;
-                        margin-bottom: 15px;
+                        font-size: 9px;
                     }
                     .photo-box {
-                        width: 150px;
-                        height: 180px;
-                        border: 2px solid #333;
+                        width: 90px;
+                        height: 110px;
+                        border: 1.5px solid #333;
                         display: flex;
                         align-items: center;
                         justify-content: center;
@@ -311,41 +325,83 @@ export default function RegisterForm() {
                     .photo-box .photo-placeholder {
                         text-align: center;
                         color: #666;
-                        font-size: 14px;
-                        padding: 10px;
+                        font-size: 8px;
+                        padding: 5px;
+                    }
+                    .info-table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-top: 5px;
+                        font-size: 9px;
+                    }
+                    .info-table td {
+                        padding: 4px 6px;
+                        border: 1px solid #ddd;
+                        line-height: 1.2;
+                    }
+                    .info-table td:first-child {
+                        width: 28%;
+                        font-weight: bold;
+                    }
+                    .terms-section {
+                        margin-top: 8px;
+                    }
+                    .terms-section ul {
+                        margin: 4px 0;
+                        padding-left: 18px;
+                        line-height: 1.3;
+                        font-size: 8px;
+                        color: #333;
+                    }
+                    .terms-section li {
+                        margin-bottom: 2px;
+                    }
+                    .terms-section p {
+                        margin-top: 6px;
+                        font-weight: bold;
+                        font-size: 9px;
                     }
                     .signature-section {
-                        margin-top: 40px;
+                        margin-top: 12px;
                         display: flex;
                         justify-content: space-around;
                         page-break-inside: avoid;
                     }
                     .signature-box {
                         text-align: center;
-                        width: 200px;
-                        border-top: 2px solid #333;
-                        padding-top: 10px;
-                        margin-top: 60px;
+                        width: 150px;
+                        border-top: 1.5px solid #333;
+                        padding-top: 5px;
+                        margin-top: 30px;
+                        font-size: 8px;
+                    }
+                    .signature-box p {
+                        margin: 0;
+                        font-size: 8px;
                     }
                     .footer {
-                        margin-top: 50px;
+                        margin-top: 10px;
                         text-align: center;
-                        font-size: 12px;
+                        font-size: 8px;
                         color: #666;
                         border-top: 1px solid #ddd;
-                        padding-top: 20px;
+                        padding-top: 5px;
+                        line-height: 1.2;
+                    }
+                    .footer p {
+                        margin: 2px 0;
                     }
                     .no-print {
                         text-align: center;
-                        margin-top: 30px;
+                        margin-top: 20px;
                     }
                     .no-print button {
-                        padding: 12px 24px;
+                        padding: 10px 20px;
                         background: #8b0000;
                         color: white;
                         border: none;
                         border-radius: 5px;
-                        font-size: 16px;
+                        font-size: 14px;
                         cursor: pointer;
                         margin: 0 10px;
                     }
@@ -357,13 +413,12 @@ export default function RegisterForm() {
             <body>
                 <div class="header">
                     <div class="header-left">
-                        <h1>Nad Dhyas Foundation</h1>
-                        <p>At post Deravan</p>
-                        <p>taluka pattan Zilla Satara</p>
+                        <h1>Swargumphan Sangeet Vidyalaya</h1>
+                        <p>run by Naad dhyas Foundation</p>
                     </div>
                     <div class="header-right">
                         <h2>Admission Form</h2>
-                        <p style="margin-top: 10px; font-size: 14px; color: #333;"><strong>Serial No:</strong> ${serialNo}</p>
+                        <p><strong>Serial No:</strong> ${serialNo}</p>
                     </div>
                 </div>
 
@@ -400,69 +455,69 @@ export default function RegisterForm() {
 
                 <div class="form-section">
                     <h3>Additional Information</h3>
-                    <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                    <table class="info-table">
                         <tr>
-                            <td style="padding: 8px; border: 1px solid #ddd; width: 30%; font-weight: bold;">Form No:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;">${data.formNo || 'N/A'}</td>
+                            <td>Form No:</td>
+                            <td>${data.formNo || 'N/A'}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Address:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;">${data.address || 'N/A'}</td>
+                            <td>Address:</td>
+                            <td>${data.address || 'N/A'}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">PAN Card:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;">${data.panCard || 'N/A'}</td>
+                            <td>PAN Card:</td>
+                            <td>${data.panCard || 'N/A'}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Branch:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;">${data.branch || 'N/A'}</td>
+                            <td>Branch:</td>
+                            <td>${data.branch || 'N/A'}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Admission Date:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;">${data.Admissiondate || 'N/A'}</td>
+                            <td>Admission Date:</td>
+                            <td>${data.Admissiondate || 'N/A'}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Age:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;">${data.age || 'N/A'}</td>
+                            <td>Age:</td>
+                            <td>${data.age || 'N/A'}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Instrumental:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;">${data.instrumentalSubject || 'Not Selected'}</td>
+                            <td>Instrumental:</td>
+                            <td>${data.instrumentalSubject || 'Not Selected'}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Indian Classical Vocal:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;">${data.vocalSubject || 'Not Selected'}</td>
+                            <td>Indian Classical Vocal:</td>
+                            <td>${data.vocalSubject || 'Not Selected'}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Dance:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;">${data.danceSubject || 'Not Selected'}</td>
+                            <td>Dance:</td>
+                            <td>${data.danceSubject || 'Not Selected'}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Diploma Admission Year:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;">${data.diplomaAdmissionYear || 'N/A'}</td>
+                            <td>Diploma Admission Year:</td>
+                            <td>${data.diplomaAdmissionYear || 'N/A'}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Joining Date:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;">${data.joiningDate || 'N/A'}</td>
+                            <td>Joining Date:</td>
+                            <td>${data.joiningDate || 'N/A'}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Educational / Job Details:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;">${data.educationalActivities || 'N/A'}</td>
+                            <td>Educational / Job Details:</td>
+                            <td>${data.educationalActivities || 'N/A'}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Amount Paid:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;">₹${data.amountPaying || 100}</td>
+                            <td>Amount Paid:</td>
+                            <td>₹${data.amountPaying || 100}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">UPI ID / Transaction ID:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;">${data.transactionId || 'N/A'}</td>
+                            <td>UPI ID / Transaction ID:</td>
+                            <td>${data.transactionId || 'N/A'}</td>
                         </tr>
                     </table>
                 </div>
 
-                <div class="form-section">
+                <div class="form-section terms-section">
                     <h3>Terms & Conditions</h3>
-                    <ul style="line-height: 1.8; color: #333;">
+                    <ul>
                         <li>Admissions allowed above age 7.</li>
                         <li>Minimum 2 months' fee should be paid.</li>
                         <li>No concession for absents or discontinuation.</li>
@@ -470,7 +525,7 @@ export default function RegisterForm() {
                         <li>Practice daily for 45 to 60 minutes.</li>
                         <li>10% discount on annual payment.</li>
                     </ul>
-                    <p style="margin-top: 20px; font-weight: bold;">I understand all the rules and regulations. ✓</p>
+                    <p>I understand all the rules and regulations. ✓</p>
                 </div>
 
                 <div class="signature-section">
@@ -766,7 +821,9 @@ export default function RegisterForm() {
                                     <option value="Tabla">Tabla</option>
                                     <option value="Harmonium">Harmonium</option>
                                     <option value="Satar">Satar</option>
-                                    <option value="Basri">Basri</option>
+                                    <option value="Bansuri">Bansuri</option>
+                                    <option value="Guitar">Guitar</option>
+                                    <option value="Pakhawaj">Pakhawaj</option>
                                 </select>
                             </div>
 

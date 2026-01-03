@@ -13,7 +13,7 @@ export default function Testimonials() {
     <section className={`section ${styles.testimonialsSection}`}>
       <div className="container">
         <h2 className={styles.sectionTitle}>
-          My Swargufan Experience
+          My Swargumphan Experience
           <span className={styles.subtitle}>Hear from our students</span>
         </h2>
         <div className={styles.testimonialsGrid}>

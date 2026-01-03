@@ -48,6 +48,7 @@ export default function AdminDashboardPage() {
     const [isHeadAdmin, setIsHeadAdmin] = useState(false)
     const [isBranchAdmin, setIsBranchAdmin] = useState(false)
     const [isRootAdmin, setIsRootAdmin] = useState(false)
+    const [isRootUser, setIsRootUser] = useState(false) // Only "root" user can delete
     const [branchId, setBranchId] = useState<string>('')
     const [branchExpenses, setBranchExpenses] = useState<BranchExpense[]>([])
     const [selectedMonth, setSelectedMonth] = useState<string>('all')
@@ -70,6 +71,12 @@ export default function AdminDashboardPage() {
 
         if (adminRole === 'ROOT' || isRootAdminLoggedIn === 'true') {
             setIsRootAdmin(true)
+            // Check if logged in user is specifically "root"
+            const adminUsername = localStorage.getItem('adminUsername')
+            const rootAdminUsername = localStorage.getItem('rootAdminUsername')
+            if (adminUsername === 'root' || rootAdminUsername === 'root') {
+                setIsRootUser(true)
+            }
             fetchAdminData('ROOT')
         } else if (adminRole === 'BRANCH' || isBranchAdminLoggedIn === 'true') {
             setIsBranchAdmin(true)
@@ -172,6 +179,53 @@ export default function AdminDashboardPage() {
         localStorage.removeItem('rootAdminUsername')
         localStorage.removeItem('loggedInBranchId')
         router.push('/admin/login')
+    }
+
+    const handleDeleteStudent = async (admissionId: number, studentName: string) => {
+        // Only the "root" user can delete students
+        if (!isRootUser) {
+            alert('Only the root administrator (username: root) can delete students. Other admins do not have delete permissions.')
+            return
+        }
+
+        const confirmMessage = `Are you sure you want to delete student "${studentName}"?\n\nThis action cannot be undone and will permanently delete:\n- Student admission record\n- Music preferences\n- Payment information\n- Signatures\n- Login credentials\n\nThis will remove the student from the database and admin panel.`
+        
+        if (!window.confirm(confirmMessage)) {
+            return
+        }
+
+        try {
+            const adminId = localStorage.getItem('adminId')
+            const adminUsername = localStorage.getItem('adminUsername')
+            const adminRole = localStorage.getItem('adminRole')
+
+            const res = await fetch(`/api/admin/students/${admissionId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    adminRole: adminRole || 'ROOT',
+                    adminId,
+                    adminUsername
+                })
+            })
+
+            const data = await res.json()
+
+            if (res.ok && data.success) {
+                alert(`Student "${studentName}" has been deleted successfully.`)
+                // Refresh the student list
+                if (isRootUser) {
+                    fetchAdminData('ROOT')
+                }
+            } else {
+                alert(data.error || 'Failed to delete student')
+            }
+        } catch (error) {
+            console.error('Error deleting student:', error)
+            alert('An error occurred while deleting the student. Please try again.')
+        }
     }
 
     // Get unique branches for filter (only for ROOT admin)
@@ -319,12 +373,13 @@ export default function AdminDashboardPage() {
                                         <th>Amount Paid</th>
                                         <th>Transaction ID</th>
                                         <th>Courses</th>
+                                        {isRootUser && <th>Actions</th>}
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {filteredStudents.length === 0 ? (
                                         <tr>
-                                            <td colSpan={10} style={{ textAlign: 'center', padding: '40px' }}>
+                                            <td colSpan={isRootUser ? 11 : 10} style={{ textAlign: 'center', padding: '40px' }}>
                                                 No records found
                                             </td>
                                         </tr>
@@ -349,6 +404,26 @@ export default function AdminDashboardPage() {
                                                         student.dance
                                                     ].filter(Boolean).join(', ') || '-'}
                                                 </td>
+                                                {isRootUser && (
+                                                    <td>
+                                                        <button
+                                                            onClick={() => handleDeleteStudent(student.admission_id, student.full_name)}
+                                                            style={{
+                                                                background: '#dc3545',
+                                                                color: 'white',
+                                                                border: 'none',
+                                                                padding: '6px 12px',
+                                                                borderRadius: '4px',
+                                                                cursor: 'pointer',
+                                                                fontSize: '12px',
+                                                                fontWeight: '600'
+                                                            }}
+                                                            title="Delete Student (Root Only)"
+                                                        >
+                                                            🗑️ Delete
+                                                        </button>
+                                                    </td>
+                                                )}
                                             </tr>
                                         ))
                                     )}

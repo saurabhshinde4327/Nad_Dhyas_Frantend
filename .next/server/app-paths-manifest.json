@@ -1,11 +1,1 @@
-{
-  "/page": "app/page.js",
-  "/register/page": "app/register/page.js",
-  "/admin/login/page": "app/admin/login/page.js",
-  "/api/getNextFormNo/route": "app/api/getNextFormNo/route.js",
-  "/admin/dashboard/page": "app/admin/dashboard/page.js",
-  "/api/register/route": "app/api/register/route.js",
-  "/api/admin/login/route": "app/api/admin/login/route.js",
-  "/api/admin/students/route": "app/api/admin/students/route.js",
-  "/api/admin/stats/route": "app/api/admin/stats/route.js"
-}
+{}

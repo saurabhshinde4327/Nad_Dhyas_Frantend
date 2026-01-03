@@ -87,7 +87,7 @@ export default function InvoicePage({ params }: { params: { id: string } }) {
                 <div style={{ textAlign: 'left' }}>
                     <h1 style={{ color: '#800000', margin: '0 0 5px 0', fontSize: '24px', fontWeight: 'bold' }}>Nad Dhyas Foundation</h1>
                     <p style={{ margin: '3px 0', fontSize: '14px', color: '#333' }}>At post Deravan</p>
-                    <p style={{ margin: '3px 0', fontSize: '14px', color: '#333' }}>taluka pattan Zilla Satara</p>
+                    <p style={{ margin: '3px 0', fontSize: '14px', color: '#333' }}>Tal : Patan , Dist : Satara</p>
                 </div>
                 <div style={{ textAlign: 'right' }}>
                     <h2 style={{ color: '#800000', margin: 0, fontSize: '24px', fontWeight: 'bold' }}>Donation Receipt</h2>
