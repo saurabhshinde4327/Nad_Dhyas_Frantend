@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import ScrollAnimation from './ScrollAnimation'
 import styles from './Courses.module.css'
 
 export default function Courses() {
@@ -140,6 +141,11 @@ export default function Courses() {
   return (
     <section className="section" id="courses" style={{ background: '#2c2c2c', padding: '30px 0 20px 0' }}>
       <div className="container">
+        <ScrollAnimation animationType="fadeInUp" delay={0.2}>
+          <h2 className="section-title" style={{ color: 'white', textAlign: 'center', marginBottom: '30px' }}>
+            Our Courses
+          </h2>
+        </ScrollAnimation>
         <div className={styles.coursesScrollContainer} ref={scrollContainerRef}>
           <div className={styles.coursesScrollContent} ref={scrollContentRef}>
             {duplicatedCategories.map((category, index) => (

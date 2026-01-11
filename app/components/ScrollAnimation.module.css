@@ -1,0 +1,153 @@
+.scrollAnimation {
+  opacity: 0;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scrollAnimation.visible {
+  opacity: 1;
+}
+
+/* Fade In Up Animation */
+.fadeInUp {
+  transform: translateY(50px);
+}
+
+.fadeInUp.visible {
+  transform: translateY(0);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Fade In Left Animation */
+.fadeInLeft {
+  transform: translateX(-50px);
+}
+
+.fadeInLeft.visible {
+  transform: translateX(0);
+  animation: fadeInLeft 0.6s ease-out forwards;
+}
+
+/* Fade In Right Animation */
+.fadeInRight {
+  transform: translateX(50px);
+}
+
+.fadeInRight.visible {
+  transform: translateX(0);
+  animation: fadeInRight 0.6s ease-out forwards;
+}
+
+/* Fade In Animation */
+.fadeIn {
+  opacity: 0;
+}
+
+.fadeIn.visible {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Zoom In Animation */
+.zoomIn {
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+.zoomIn.visible {
+  transform: scale(1);
+  opacity: 1;
+  animation: zoomIn 0.6s ease-out forwards;
+}
+
+/* Keyframe Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Staggered animations for multiple items */
+.scrollAnimation:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.scrollAnimation:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.scrollAnimation:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.scrollAnimation:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.scrollAnimation:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.scrollAnimation:nth-child(6) {
+  animation-delay: 0.5s;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .fadeInUp,
+  .fadeInLeft,
+  .fadeInRight {
+    transform: translateY(30px);
+  }
+
+  .fadeInLeft.visible,
+  .fadeInRight.visible {
+    transform: translateY(0);
+  }
+}
+

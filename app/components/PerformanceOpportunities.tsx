@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import ScrollAnimation from './ScrollAnimation'
 import styles from './PerformanceOpportunities.module.css'
 
 export default function PerformanceOpportunities() {
@@ -30,19 +31,22 @@ export default function PerformanceOpportunities() {
     <section className={`section ${styles.performanceSection}`}>
       <div className="container">
         <div className={styles.performanceContent}>
-          <div className={styles.performanceText}>
-            <h2 className={styles.performanceTitle}>
-            Performance Opportunities
-            </h2>
-            <p className={styles.performanceSubtitle}>
-            At Swargufan, learning goes beyond the classroom.<br/>
-              
-            </p>
-            <p className={styles.performanceDescription}>
-            Every student gets regular opportunities to perform and present their talent to a live audience.
-            </p>
-          </div>
-          <div className={styles.performanceImage}>
+          <ScrollAnimation animationType="fadeInLeft" delay={0.2}>
+            <div className={styles.performanceText}>
+              <h2 className={styles.performanceTitle}>
+              Performance Opportunities
+              </h2>
+              <p className={styles.performanceSubtitle}>
+              At Swargufan, learning goes beyond the classroom.<br/>
+                
+              </p>
+              <p className={styles.performanceDescription}>
+              Every student gets regular opportunities to perform and present their talent to a live audience.
+              </p>
+            </div>
+          </ScrollAnimation>
+          <ScrollAnimation animationType="fadeInRight" delay={0.4}>
+            <div className={styles.performanceImage}>
             <div className={styles.imageSlider}>
               {slides.map((slide, index) => (
                 <div
@@ -71,6 +75,7 @@ export default function PerformanceOpportunities() {
               </div>
             </div>
           </div>
+          </ScrollAnimation>
         </div>
       </div>
       <div className={styles.performanceDivider}></div>

@@ -1,3 +1,4 @@
+import ScrollAnimation from './ScrollAnimation'
 import styles from './Testimonials.module.css'
 
 export default function Testimonials() {
@@ -12,13 +13,16 @@ export default function Testimonials() {
   return (
     <section className={`section ${styles.testimonialsSection}`}>
       <div className="container">
-        <h2 className={styles.sectionTitle}>
-          My Swargumphan Experience
-          <span className={styles.subtitle}>Hear from our students</span>
-        </h2>
+        <ScrollAnimation animationType="fadeInUp" delay={0.1}>
+          <h2 className={styles.sectionTitle}>
+            My Swargumphan Experience
+            <span className={styles.subtitle}>Hear from our students</span>
+          </h2>
+        </ScrollAnimation>
         <div className={styles.testimonialsGrid}>
           {testimonials.map((testimonial, index) => (
-            <div key={index} className={styles.testimonialCard}>
+            <ScrollAnimation key={index} animationType="zoomIn" delay={index * 0.2}>
+              <div className={styles.testimonialCard}>
               <div className={styles.quoteIcon}>"</div>
               <p className={styles.testimonialText}>{testimonial.text}</p>
               <div className={styles.testimonialAuthor}>
@@ -31,6 +35,7 @@ export default function Testimonials() {
                 </div>
               </div>
             </div>
+            </ScrollAnimation>
           ))}
         </div>
       </div>

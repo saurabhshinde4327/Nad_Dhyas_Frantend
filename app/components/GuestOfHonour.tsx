@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import ScrollAnimation from './ScrollAnimation'
 import styles from './GuestOfHonour.module.css'
 
 export default function GuestOfHonour() {
@@ -53,9 +54,12 @@ export default function GuestOfHonour() {
   return (
     <section className={`section ${styles.guestSection}`}>
       <div className="container">
-        <h2 className="section-title">Guest of Honour at Past Events</h2>
+        <ScrollAnimation animationType="fadeInUp" delay={0.2}>
+          <h2 className="section-title">Guest of Honour at Past Events</h2>
+        </ScrollAnimation>
       </div>
-      <div className={styles.scrollContainer}>
+      <ScrollAnimation animationType="fadeInUp" delay={0.4}>
+        <div className={styles.scrollContainer}>
         <div className={styles.guestsGrid} ref={scrollContainerRef}>
           {guests.map((guest, index) => (
             <div 
@@ -90,6 +94,7 @@ export default function GuestOfHonour() {
           ))}
         </div>
       </div>
+      </ScrollAnimation>
     </section>
   )
 }

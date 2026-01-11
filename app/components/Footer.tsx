@@ -1,10 +1,12 @@
+import ScrollAnimation from './ScrollAnimation'
 import styles from './Footer.module.css'
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className="container">
-        <div className={styles.footerContent}>
+        <ScrollAnimation animationType="fadeInUp" delay={0.2}>
+          <div className={styles.footerContent}>
           <div className={styles.footerSection}>
             <h3 className={styles.footerTitle}>Swargumphan</h3>
             <p className={styles.footerTagline}>Music Institute</p>
@@ -63,10 +65,13 @@ export default function Footer() {
             </div>
           </div>
         </div>
+        </ScrollAnimation>
 
-        <div className={styles.footerBottom}>
-          <p style={{ textAlign: 'center', color: 'white' }}>&copy; 2025 Swargumphan Music Institute. All rights reserved.</p>
-        </div>
+        <ScrollAnimation animationType="fadeIn" delay={0.4}>
+            <div className={styles.footerBottom}>
+            <p style={{ textAlign: 'center', color: 'white' }}>&copy; 2025 Swargumphan Music Institute. All rights reserved.</p>
+          </div>
+        </ScrollAnimation>
       </div>
     </footer>
   )
