@@ -3,9 +3,10 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { mockStudentAnalytics, mockDashboardStats, mockHeadDashboardStats, mockBranchExpenses, StudentAnalytics, DashboardStats as ImportedDashboardStats, BranchStats, BranchExpense } from '@/app/utils/mockData'
-import styles from './Dashboard.module.css'
-
-import SideNav from './SideNav'
+import AdminLayout from './AdminLayout'
+import BranchFeesChart from './BranchFeesChart'
+import layoutStyles from './AdminLayout.module.css'
+import dashboardStyles from './Dashboard.module.css'
 
 interface StudentRecord {
     admission_id: number
@@ -234,265 +235,167 @@ export default function AdminDashboardPage() {
 
     // Root Admin or Branch Admin Dashboard View
     if (isRootAdmin || isBranchAdmin) {
-        return (
-            <div className={styles.container}>
-                <SideNav />
-                <header className={styles.header}>
-                    <h1>{isRootAdmin ? 'Root Admin Dashboard' : `${currentBranch} - Branch Admin Dashboard`}</h1>
-                    <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
-                </header>
+        const headerActions = (
+            <>
+                <button onClick={handleLogout} className={layoutStyles.logoutButton}>
+                    Logout
+                </button>
+            </>
+        )
 
-                <main className={styles.main}>
-                    {/* Statistics Cards */}
-                    {dashboardStats && (
-                        <div className={styles.statsGrid} style={{ marginBottom: '40px' }}>
-                            <div className={styles.card} style={{ borderLeft: '5px solid #4CAF50' }}>
+        return (
+            <AdminLayout 
+                title={isRootAdmin ? 'Root Admin Dashboard' : `${currentBranch} - Branch Admin Dashboard`}
+                headerActions={headerActions}
+            >
+                {/* Statistics Cards */}
+                {dashboardStats && (
+                    <div className={layoutStyles.statsGrid}>
+                        <div className={`${layoutStyles.statCard} ${layoutStyles.primary}`}>
+                            <div className={layoutStyles.statContent}>
                                 <h3>Total Students</h3>
-                                <p className={styles.statValue}>{dashboardStats.totalStudents}</p>
-                            </div>
-                            <div className={styles.card} style={{ borderLeft: '5px solid #2196F3' }}>
-                                <h3>Total Fees Collected</h3>
-                                <p className={styles.statValue}>₹{dashboardStats.totalFees.toLocaleString()}</p>
-                            </div>
-                            <div className={styles.card} style={{ borderLeft: '5px solid #FF9800' }}>
-                                <h3>Recent Admissions (30 days)</h3>
-                                <p className={styles.statValue}>{dashboardStats.recentAdmissions}</p>
+                                <div className={layoutStyles.statValue}>{dashboardStats.totalStudents}</div>
+                                <p className={layoutStyles.statSubtext}>+{dashboardStats.recentAdmissions} recent admissions</p>
                             </div>
                         </div>
-                    )}
+                        <div className={`${layoutStyles.statCard} ${layoutStyles.success}`}>
+                            <div className={layoutStyles.statContent}>
+                                <h3>Total Fees Collected</h3>
+                                <div className={layoutStyles.statValue}>₹{dashboardStats.totalFees.toLocaleString()}</div>
+                                <p className={layoutStyles.statSubtext}>Total revenue</p>
+                            </div>
+                        </div>
+                        <div className={`${layoutStyles.statCard} ${layoutStyles.warning}`}>
+                            <div className={layoutStyles.statContent}>
+                                <h3>Recent Admissions</h3>
+                                <div className={layoutStyles.statValue}>{dashboardStats.recentAdmissions}</div>
+                                <p className={layoutStyles.statSubtext}>Last 30 days</p>
+                            </div>
+                        </div>
+                        <div className={`${layoutStyles.statCard} ${layoutStyles.info}`}>
+                            <div className={layoutStyles.statContent}>
+                                <h3>Total Branches</h3>
+                                <div className={layoutStyles.statValue}>{dashboardStats.branchStats?.length || 0}</div>
+                                <p className={layoutStyles.statSubtext}>Active branches</p>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                     {/* Branch Statistics */}
                     {dashboardStats?.branchStats && dashboardStats.branchStats.length > 0 && (
-                        <>
-                            <h2 className={styles.sectionTitle}>Branch Statistics</h2>
-                            <div className={styles.statsGrid} style={{ marginBottom: '40px' }}>
-                                {dashboardStats.branchStats.map((branch, index) => (
-                                    <div key={index} className={styles.card}>
-                                        <h3 style={{ color: '#ff3333', marginBottom: '15px' }}>{branch.branch}</h3>
-                                        <div style={{ display: 'grid', gap: '10px' }}>
-                                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                                <span>Students:</span>
-                                                <strong>{branch.count}</strong>
+                        <div className={layoutStyles.statsGrid} style={{ marginBottom: '30px' }}>
+                            {dashboardStats.branchStats.map((branch, index) => (
+                                <div key={index} className={layoutStyles.statCard}>
+                                    <div className={layoutStyles.statContent}>
+                                        <h3 style={{ color: '#c12727', marginBottom: '12px', fontSize: '16px' }}>{branch.branch}</h3>
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                <span style={{ color: '#6b7280', fontSize: '14px' }}>Students:</span>
+                                                <strong style={{ fontSize: '18px', color: '#111827' }}>{branch.count}</strong>
                                             </div>
-                                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                                <span>Total Fees:</span>
-                                                <strong style={{ color: '#4CAF50' }}>₹{branch.total_fees.toLocaleString()}</strong>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                <span style={{ color: '#6b7280', fontSize: '14px' }}>Total Fees:</span>
+                                                <strong style={{ color: '#10b981', fontSize: '18px' }}>₹{branch.total_fees.toLocaleString()}</strong>
                                             </div>
                                         </div>
                                     </div>
-                                ))}
-                            </div>
-                        </>
-                    )}
-
-                    {/* Filters and Search */}
-                    <div style={{ 
-                        display: 'flex', 
-                        gap: '20px', 
-                        marginBottom: '20px',
-                        flexWrap: 'wrap',
-                        alignItems: 'center'
-                    }}>
-                        {isRootAdmin && (
-                            <div style={{ flex: '1', minWidth: '200px' }}>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Filter by Branch:</label>
-                                <select
-                                    value={selectedBranch}
-                                    onChange={(e) => setSelectedBranch(e.target.value)}
-                                    style={{
-                                        width: '100%',
-                                        padding: '10px',
-                                        borderRadius: '5px',
-                                        border: '1px solid #ddd',
-                                        backgroundColor: '#fff',
-                                        fontSize: '1rem'
-                                    }}
-                                >
-                                    <option value="all">All Branches</option>
-                                    {uniqueBranches.map(branch => (
-                                        <option key={branch} value={branch}>{branch}</option>
-                                    ))}
-                                </select>
-                            </div>
-                        )}
-                        {isBranchAdmin && (
-                            <div style={{ flex: '1', minWidth: '200px' }}>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Branch:</label>
-                                <input
-                                    type="text"
-                                    value={currentBranch || ''}
-                                    readOnly
-                                    style={{
-                                        width: '100%',
-                                        padding: '10px',
-                                        borderRadius: '5px',
-                                        border: '1px solid #ddd',
-                                        backgroundColor: '#f5f5f5',
-                                        fontSize: '1rem',
-                                        color: '#666'
-                                    }}
-                                />
-                            </div>
-                        )}
-                        <div style={{ flex: '1', minWidth: '200px' }}>
-                            <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Search:</label>
-                            <input
-                                type="text"
-                                placeholder="Search by name, email, or transaction ID"
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                style={{
-                                    width: '100%',
-                                    padding: '10px',
-                                    borderRadius: '5px',
-                                    border: '1px solid #ddd',
-                                    fontSize: '1rem'
-                                }}
-                            />
-                        </div>
-                    </div>
-
-                    {/* Students Table */}
-                    <h2 className={styles.sectionTitle}>
-                        All Student Records ({filteredStudents.length})
-                    </h2>
-                    {loading ? (
-                        <div style={{ textAlign: 'center', padding: '40px' }}>Loading...</div>
-                    ) : (
-                        <div className={styles.tableContainer} style={{ overflowX: 'auto' }}>
-                            <table className={styles.table}>
-                                <thead>
-                                    <tr>
-                                        <th>Form No</th>
-                                        <th>Branch</th>
-                                        <th>Full Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Admission Date</th>
-                                        <th>Payment Type</th>
-                                        <th>Amount Paid</th>
-                                        <th>Transaction ID</th>
-                                        <th>Courses</th>
-                                        {isRootUser && <th>Actions</th>}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {filteredStudents.length === 0 ? (
-                                        <tr>
-                                            <td colSpan={isRootUser ? 11 : 10} style={{ textAlign: 'center', padding: '40px' }}>
-                                                No records found
-                                            </td>
-                                        </tr>
-                                    ) : (
-                                        filteredStudents.map((student) => (
-                                            <tr key={student.admission_id}>
-                                                <td>{student.form_no || '-'}</td>
-                                                <td>{student.branch}</td>
-                                                <td>{student.full_name}</td>
-                                                <td>{student.email_id || '-'}</td>
-                                                <td>{student.phone || '-'}</td>
-                                                <td>{student.admission_date ? new Date(student.admission_date).toLocaleDateString() : '-'}</td>
-                                                <td>{student.payment_type || '-'}</td>
-                                                <td>₹{student.amount_paid ? student.amount_paid.toLocaleString() : '0'}</td>
-                                                <td style={{ fontFamily: 'monospace', fontSize: '0.9rem' }}>
-                                                    {student.transaction_id || '-'}
-                                                </td>
-                                                <td>
-                                                    {[
-                                                        student.instrumental_selection,
-                                                        student.indian_classical_vocal,
-                                                        student.dance
-                                                    ].filter(Boolean).join(', ') || '-'}
-                                                </td>
-                                                {isRootUser && (
-                                                    <td>
-                                                        <button
-                                                            onClick={() => handleDeleteStudent(student.admission_id, student.full_name)}
-                                                            style={{
-                                                                background: '#dc3545',
-                                                                color: 'white',
-                                                                border: 'none',
-                                                                padding: '6px 12px',
-                                                                borderRadius: '4px',
-                                                                cursor: 'pointer',
-                                                                fontSize: '12px',
-                                                                fontWeight: '600'
-                                                            }}
-                                                            title="Delete Student (Root Only)"
-                                                        >
-                                                            🗑️ Delete
-                                                        </button>
-                                                    </td>
-                                                )}
-                                            </tr>
-                                        ))
-                                    )}
-                                </tbody>
-                            </table>
+                                </div>
+                            ))}
                         </div>
                     )}
-                </main>
-            </div>
-        )
+
+                    {/* Branch Fees Bar Chart */}
+                    {dashboardStats?.branchStats && dashboardStats.branchStats.length > 0 && (
+                        <div className={layoutStyles.sectionCard}>
+                            <div className={layoutStyles.sectionHeader}>
+                                <h2>Total Fees by Branch</h2>
+                                <p>Visual representation of fees collected across all branches</p>
+                            </div>
+                            <div className={layoutStyles.sectionBody}>
+                                <BranchFeesChart data={dashboardStats.branchStats} />
+                            </div>
+                        </div>
+                    )}
+                </AdminLayout>
+            )
     }
 
     if (isHeadAdmin) {
         if (!headStats) return null
-        return (
-            <div className={styles.container}>
-                <SideNav />
-                <header className={styles.header}>
-                    <h1>Head Admin Dashboard</h1>
-                    <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
-                </header>
+        const headerActions = (
+            <button onClick={handleLogout} className={layoutStyles.logoutButton}>
+                Logout
+            </button>
+        )
 
-                <main className={styles.main}>
-                    {/* Aggregate Stats */}
-                    <div className={styles.statsGrid} style={{ marginBottom: '40px' }}>
-                        <div className={styles.card} style={{ borderLeft: '5px solid #4CAF50' }}>
-                            <h3>Total Admissions (All Branches)</h3>
-                            <p className={styles.statValue}>
-                                {headStats.reduce((sum, branch) => sum + branch.totalAdmissions, 0)}
-                            </p>
-                        </div>
-                        <div className={styles.card} style={{ borderLeft: '5px solid #FFC107' }}>
-                            <h3>Total Pending Fees</h3>
-                            <p className={`${styles.statValue} ${styles.warning}`}>
-                                ₹{headStats.reduce((sum, branch) => sum + branch.pendingFees, 0).toLocaleString()}
-                            </p>
-                        </div>
-                        <div className={styles.card} style={{ borderLeft: '5px solid #F44336' }}>
-                            <h3>Total Expenses</h3>
-                            <p className={`${styles.statValue} ${styles.warning}`}>
-                                ₹{headStats.reduce((sum, branch) => sum + branch.pendingExpenses, 0).toLocaleString()}
-                            </p>
+        const totalAdmissions = headStats.reduce((sum, branch) => sum + branch.totalAdmissions, 0)
+        const totalPendingFees = headStats.reduce((sum, branch) => sum + branch.pendingFees, 0)
+        const totalExpenses = headStats.reduce((sum, branch) => sum + branch.pendingExpenses, 0)
+
+        return (
+            <AdminLayout 
+                title="Head Admin Dashboard"
+                headerActions={headerActions}
+            >
+                {/* Aggregate Stats */}
+                <div className={layoutStyles.statsGrid} style={{ marginBottom: '30px' }}>
+                    <div className={`${layoutStyles.statCard} ${layoutStyles.primary}`}>
+                        <div className={layoutStyles.statContent}>
+                            <h3>Total Admissions</h3>
+                            <div className={layoutStyles.statValue}>{totalAdmissions}</div>
+                            <p className={layoutStyles.statSubtext}>Across all branches</p>
                         </div>
                     </div>
+                    <div className={`${layoutStyles.statCard} ${layoutStyles.warning}`}>
+                        <div className={layoutStyles.statContent}>
+                            <h3>Total Pending Fees</h3>
+                            <div className={layoutStyles.statValue}>₹{totalPendingFees.toLocaleString()}</div>
+                            <p className={layoutStyles.statSubtext}>Outstanding payments</p>
+                        </div>
+                    </div>
+                    <div className={`${layoutStyles.statCard} ${layoutStyles.danger}`}>
+                        <div className={layoutStyles.statContent}>
+                            <h3>Total Expenses</h3>
+                            <div className={layoutStyles.statValue}>₹{totalExpenses.toLocaleString()}</div>
+                            <p className={layoutStyles.statSubtext}>Branch expenses</p>
+                        </div>
+                    </div>
+                </div>
 
-                    <h2 className={styles.sectionTitle}>Branch Wise Analytics</h2>
-                    <div className={styles.statsGrid}>
-                        {headStats.map((branch) => (
-                            <div key={branch.id} className={styles.card}>
-                                <h3 style={{ color: '#ff3333', marginBottom: '15px' }}>{branch.name}</h3>
-                                <div style={{ display: 'grid', gap: '10px' }}>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                        <span>Admissions:</span>
-                                        <strong>{branch.totalAdmissions}</strong>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                        <span>Pending Fees:</span>
-                                        <strong style={{ color: '#eab308' }}>₹{branch.pendingFees.toLocaleString()}</strong>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                        <span>Expenses:</span>
-                                        <strong style={{ color: '#ef4444' }}>₹{branch.pendingExpenses.toLocaleString()}</strong>
+                {/* Branch Wise Analytics */}
+                <div className={layoutStyles.sectionCard}>
+                    <div className={layoutStyles.sectionHeader}>
+                        <h2>Branch Wise Analytics</h2>
+                        <p>Detailed breakdown of all branches performance and metrics</p>
+                    </div>
+                    <div className={layoutStyles.sectionBody}>
+                        <div className={layoutStyles.statsGrid}>
+                            {headStats.map((branch) => (
+                                <div key={branch.id} className={layoutStyles.statCard}>
+                                    <div className={layoutStyles.statContent}>
+                                        <h3 style={{ color: '#c12727', marginBottom: '12px', fontSize: '16px' }}>{branch.name}</h3>
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                <span style={{ color: '#6b7280', fontSize: '14px' }}>Admissions:</span>
+                                                <strong style={{ fontSize: '18px', color: '#111827' }}>{branch.totalAdmissions}</strong>
+                                            </div>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                <span style={{ color: '#6b7280', fontSize: '14px' }}>Pending Fees:</span>
+                                                <strong style={{ color: '#f59e0b', fontSize: '18px' }}>₹{branch.pendingFees.toLocaleString()}</strong>
+                                            </div>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                <span style={{ color: '#6b7280', fontSize: '14px' }}>Expenses:</span>
+                                                <strong style={{ color: '#ef4444', fontSize: '18px' }}>₹{branch.pendingExpenses.toLocaleString()}</strong>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
-                </main>
-            </div>
+                </div>
+            </AdminLayout>
         )
     }
 
@@ -506,37 +409,245 @@ export default function AdminDashboardPage() {
 
         const months = Array.from(new Set(branchExpenses.map(e => new Date(e.date).toLocaleString('default', { month: 'long' }))))
 
-        return (
-            <div className={styles.container}>
-                <SideNav />
-                <header className={styles.header}>
-                    <h1>{branchName}</h1>
-                    <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
-                </header>
+        const headerActions = (
+            <button onClick={handleLogout} className={layoutStyles.logoutButton}>
+                Logout
+            </button>
+        )
 
-                <main className={styles.main}>
-                    <div className={styles.statsGrid}>
-                        <div className={styles.card}>
+        return (
+            <AdminLayout 
+                title={`${branchName} - Branch Admin Dashboard`}
+                headerActions={headerActions}
+            >
+                {/* Statistics Cards */}
+                <div className={layoutStyles.statsGrid} style={{ marginBottom: '30px' }}>
+                    <div className={`${layoutStyles.statCard} ${layoutStyles.primary}`}>
+                        <div className={layoutStyles.statContent}>
                             <h3>Total Students</h3>
-                            <p className={styles.statValue}>{branchStat?.totalAdmissions || 0}</p>
+                            <div className={layoutStyles.statValue}>{branchStat?.totalAdmissions || 0}</div>
+                            <p className={layoutStyles.statSubtext}>Registered students</p>
                         </div>
-                        <div className={styles.card}>
+                    </div>
+                    <div className={`${layoutStyles.statCard} ${layoutStyles.warning}`}>
+                        <div className={layoutStyles.statContent}>
                             <h3>Pending Fees</h3>
-                            <p className={`${styles.statValue} ${styles.warning}`}>₹{branchStat?.pendingFees.toLocaleString() || 0}</p>
+                            <div className={layoutStyles.statValue}>₹{branchStat?.pendingFees.toLocaleString() || 0}</div>
+                            <p className={layoutStyles.statSubtext}>Outstanding payments</p>
                         </div>
-                        <div className={styles.card}>
+                    </div>
+                    <div className={`${layoutStyles.statCard} ${layoutStyles.danger}`}>
+                        <div className={layoutStyles.statContent}>
                             <h3>Pending Expenses</h3>
-                            <p className={`${styles.statValue} ${styles.warning}`}>₹{branchStat?.pendingExpenses.toLocaleString() || 0}</p>
+                            <div className={layoutStyles.statValue}>₹{branchStat?.pendingExpenses.toLocaleString() || 0}</div>
+                            <p className={layoutStyles.statSubtext}>Unpaid expenses</p>
+                        </div>
+                    </div>
+                </div>
+
+                    {/* Student List Section */}
+                    <div className={layoutStyles.sectionCard} style={{ marginBottom: '30px' }}>
+                        <div className={layoutStyles.sectionHeader}>
+                            <h2>Student List</h2>
+                            <p>View all students enrolled in this branch</p>
+                        </div>
+                        <div className={layoutStyles.sectionBody}>
+                            <div className={layoutStyles.tableWrapper}>
+                                <table className={layoutStyles.dataTable}>
+                                    <thead>
+                                        <tr>
+                                            <th>Student Name</th>
+                                            <th>Course</th>
+                                            <th>Status</th>
+                                            <th>Last Active</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {analytics.map((student) => (
+                                            <tr key={student.id}>
+                                                <td style={{ fontWeight: '600' }}>{student.name}</td>
+                                                <td>{student.course}</td>
+                                                <td>
+                                                    <span className={`${layoutStyles.statusBadge} ${layoutStyles[student.status.toLowerCase()]}`}>
+                                                        {student.status}
+                                                    </span>
+                                                </td>
+                                                <td>{student.lastActive}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
-                    <h2 className={styles.sectionTitle}>Student List</h2>
-                    <div className={styles.tableContainer}>
-                        <table className={styles.table}>
+                    {/* Expenses Section */}
+                    <div className={layoutStyles.sectionCard}>
+                        <div className={layoutStyles.sectionHeader}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                                <div>
+                                    <h2>Expenses</h2>
+                                    <p>Track and manage branch expenses</p>
+                                </div>
+                                <select
+                                    value={selectedMonth}
+                                    onChange={(e) => setSelectedMonth(e.target.value)}
+                                    style={{ 
+                                        padding: '8px 16px', 
+                                        borderRadius: '6px', 
+                                        border: '1px solid rgba(255, 255, 255, 0.3)', 
+                                        backgroundColor: 'rgba(255, 255, 255, 0.1)', 
+                                        color: 'white',
+                                        cursor: 'pointer'
+                                    }}
+                                >
+                                    <option value="all" style={{ color: '#333' }}>All Months</option>
+                                    {months.map(month => <option key={month} value={month} style={{ color: '#333' }}>{month}</option>)}
+                                </select>
+                            </div>
+                        </div>
+                        <div className={layoutStyles.sectionBody}>
+                            <div className={layoutStyles.tableWrapper}>
+                                <table className={layoutStyles.dataTable}>
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Description</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {filteredExpenses.map((expense) => (
+                                            <tr key={expense.id}>
+                                                <td>{expense.date}</td>
+                                                <td>{expense.description}</td>
+                                                <td style={{ fontWeight: '600', color: '#111827' }}>₹{expense.amount.toLocaleString()}</td>
+                                                <td>
+                                                    <span className={`${layoutStyles.statusBadge} ${expense.status === 'Approved' ? layoutStyles.active : layoutStyles.pending}`}>
+                                                        {expense.status}
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                        {filteredExpenses.length === 0 && (
+                                            <tr>
+                                                <td colSpan={4} style={{ textAlign: 'center', padding: '40px', color: '#6b7280' }}>
+                                                    No expenses found for this month
+                                                </td>
+                                            </tr>
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </AdminLayout>
+            )
+    }
+
+    if (!stats) return null
+
+    const headerActions = (
+        <button onClick={handleLogout} className={layoutStyles.logoutButton}>
+            Logout
+        </button>
+    )
+
+    return (
+        <AdminLayout 
+            title="Admin Dashboard"
+            headerActions={headerActions}
+        >
+            {/* Statistics Cards */}
+            <div className={layoutStyles.statsGrid} style={{ marginBottom: '30px' }}>
+                <div className={`${layoutStyles.statCard} ${layoutStyles.primary}`}>
+                    <div className={layoutStyles.statContent}>
+                        <h3>Total Students</h3>
+                        <div className={layoutStyles.statValue}>{stats.totalStudents}</div>
+                        <p className={layoutStyles.statSubtext}>Registered students</p>
+                    </div>
+                </div>
+                <div className={`${layoutStyles.statCard} ${layoutStyles.success}`}>
+                    <div className={layoutStyles.statContent}>
+                        <h3>Today's Classes</h3>
+                        <div className={layoutStyles.statValue}>{stats.todaysClasses}</div>
+                        <p className={layoutStyles.statSubtext}>Scheduled today</p>
+                    </div>
+                </div>
+                <div className={`${layoutStyles.statCard} ${layoutStyles.warning}`}>
+                    <div className={layoutStyles.statContent}>
+                        <h3>Fee Pending</h3>
+                        <div className={layoutStyles.statValue}>{stats.feePendingStudents}</div>
+                        <p className={layoutStyles.statSubtext}>Pending payments</p>
+                    </div>
+                </div>
+                <div className={`${layoutStyles.statCard} ${layoutStyles.info}`}>
+                    <div className={layoutStyles.statContent}>
+                        <h3>New Admissions</h3>
+                        <div className={layoutStyles.statValue}>{stats.newAdmissions}</div>
+                        <p className={layoutStyles.statSubtext}>Recent enrollments</p>
+                    </div>
+                </div>
+                <div className={`${layoutStyles.statCard} ${layoutStyles.primary}`}>
+                    <div className={layoutStyles.statContent}>
+                        <h3>Upcoming Events</h3>
+                        <div className={layoutStyles.statValue}>{stats.upcomingEvents}</div>
+                        <p className={layoutStyles.statSubtext}>Scheduled events</p>
+                    </div>
+                </div>
+                <div className={`${layoutStyles.statCard} ${layoutStyles.success}`}>
+                    <div className={layoutStyles.statContent}>
+                        <h3>Teachers / Gurus</h3>
+                        <div className={layoutStyles.statValue}>{stats.teachersCount}</div>
+                        <p className={layoutStyles.statSubtext}>Active instructors</p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Active Courses */}
+            {stats.activeCourses && stats.activeCourses.length > 0 && (
+                <div className={layoutStyles.sectionCard} style={{ marginBottom: '30px' }}>
+                    <div className={layoutStyles.sectionHeader}>
+                        <h2>Active Courses</h2>
+                        <p>Currently offered music courses</p>
+                    </div>
+                    <div className={layoutStyles.sectionBody}>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                            {stats.activeCourses.map((course, index) => (
+                                <span 
+                                    key={index}
+                                    style={{
+                                        padding: '8px 16px',
+                                        background: '#f3f4f6',
+                                        borderRadius: '6px',
+                                        fontSize: '14px',
+                                        color: '#374151',
+                                        fontWeight: '500'
+                                    }}
+                                >
+                                    {course}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Musical Courses Analytics */}
+            <div className={layoutStyles.sectionCard}>
+                <div className={layoutStyles.sectionHeader}>
+                    <h2>Musical Courses Analytics</h2>
+                    <p>Student progress and course performance overview</p>
+                </div>
+                <div className={layoutStyles.sectionBody}>
+                    <div className={layoutStyles.tableWrapper}>
+                        <table className={layoutStyles.dataTable}>
                             <thead>
                                 <tr>
                                     <th>Student Name</th>
                                     <th>Course</th>
+                                    <th>Progress</th>
                                     <th>Status</th>
                                     <th>Last Active</th>
                                 </tr>
@@ -544,10 +655,32 @@ export default function AdminDashboardPage() {
                             <tbody>
                                 {analytics.map((student) => (
                                     <tr key={student.id}>
-                                        <td>{student.name}</td>
+                                        <td style={{ fontWeight: '600' }}>{student.name}</td>
                                         <td>{student.course}</td>
                                         <td>
-                                            <span className={`${styles.status} ${styles[student.status.toLowerCase()]}`}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                <div style={{ 
+                                                    flex: 1, 
+                                                    height: '8px', 
+                                                    background: '#e5e7eb', 
+                                                    borderRadius: '4px',
+                                                    overflow: 'hidden'
+                                                }}>
+                                                    <div style={{
+                                                        height: '100%',
+                                                        width: `${student.progress}%`,
+                                                        background: '#3b82f6',
+                                                        borderRadius: '4px',
+                                                        transition: 'width 0.3s'
+                                                    }}></div>
+                                                </div>
+                                                <span style={{ fontSize: '13px', color: '#6b7280', minWidth: '40px' }}>
+                                                    {student.progress}%
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span className={`${layoutStyles.statusBadge} ${layoutStyles[student.status.toLowerCase()]}`}>
                                                 {student.status}
                                             </span>
                                         </td>
@@ -557,146 +690,8 @@ export default function AdminDashboardPage() {
                             </tbody>
                         </table>
                     </div>
-
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '40px', marginBottom: '20px' }}>
-                        <h2 className={styles.sectionTitle} style={{ margin: 0 }}>Expenses</h2>
-                        <select
-                            value={selectedMonth}
-                            onChange={(e) => setSelectedMonth(e.target.value)}
-                            style={{ padding: '8px 12px', borderRadius: '5px', border: '1px solid #ddd', backgroundColor: '#333', color: 'white' }}
-                        >
-                            <option value="all">All Months</option>
-                            {months.map(month => <option key={month} value={month}>{month}</option>)}
-                        </select>
-                    </div>
-
-                    <div className={styles.tableContainer}>
-                        <table className={styles.table}>
-                            <thead>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Description</th>
-                                    <th>Amount</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {filteredExpenses.map((expense) => (
-                                    <tr key={expense.id}>
-                                        <td>{expense.date}</td>
-                                        <td>{expense.description}</td>
-                                        <td>₹{expense.amount.toLocaleString()}</td>
-                                        <td>
-                                            <span style={{
-                                                padding: '5px 10px',
-                                                borderRadius: '15px',
-                                                fontSize: '0.85rem',
-                                                backgroundColor: expense.status === 'Approved' ? 'rgba(76, 175, 80, 0.2)' : 'rgba(255, 193, 7, 0.2)',
-                                                color: expense.status === 'Approved' ? '#4CAF50' : '#FFC107'
-                                            }}>
-                                                {expense.status}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                ))}
-                                {filteredExpenses.length === 0 && (
-                                    <tr>
-                                        <td colSpan={4} style={{ textAlign: 'center', padding: '20px' }}>No expenses found for this month</td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-                </main>
+                </div>
             </div>
-        )
-    }
-
-    if (!stats) return null
-
-    return (
-        <div className={styles.container}>
-            <SideNav />
-            <header className={styles.header}>
-                <h1>Admin Dashboard</h1>
-                <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
-            </header>
-
-            <main className={styles.main}>
-                <div className={styles.statsGrid}>
-                    <div className={styles.card}>
-                        <h3>Total Students</h3>
-                        <p className={styles.statValue}>{stats.totalStudents}</p>
-                    </div>
-                    <div className={styles.card}>
-                        <h3>Active Courses</h3>
-                        <ul className={styles.courseList}>
-                            {stats.activeCourses.map((course, index) => (
-                                <li key={index}>{course}</li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className={styles.card}>
-                        <h3>Today's Classes</h3>
-                        <p className={styles.statValue}>{stats.todaysClasses}</p>
-                    </div>
-                    <div className={styles.card}>
-                        <h3>Upcoming Events</h3>
-                        <p className={styles.statValue}>{stats.upcomingEvents}</p>
-                    </div>
-                    <div className={styles.card}>
-                        <h3>Fee Pending</h3>
-                        <p className={`${styles.statValue} ${styles.warning}`}>{stats.feePendingStudents}</p>
-                    </div>
-                    <div className={styles.card}>
-                        <h3>New Admissions</h3>
-                        <p className={`${styles.statValue} ${styles.success}`}>{stats.newAdmissions}</p>
-                    </div>
-                    <div className={styles.card}>
-                        <h3>Teachers / Gurus</h3>
-                        <p className={styles.statValue}>{stats.teachersCount}</p>
-                    </div>
-                </div>
-
-                <h2 className={styles.sectionTitle}>Musical Courses Analytics</h2>
-
-                <div className={styles.tableContainer}>
-                    <table className={styles.table}>
-                        <thead>
-                            <tr>
-                                <th>Student Name</th>
-                                <th>Course</th>
-                                <th>Progress</th>
-                                <th>Status</th>
-                                <th>Last Active</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {analytics.map((student) => (
-                                <tr key={student.id}>
-                                    <td>{student.name}</td>
-                                    <td>{student.course}</td>
-                                    <td>
-                                        <div className={styles.progressBarContainer}>
-                                            <div
-                                                className={styles.progressBar}
-                                                style={{ width: `${student.progress}%` }}
-                                            ></div>
-                                            <span className={styles.progressText}>{student.progress}%</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span className={`${styles.status} ${styles[student.status.toLowerCase()]}`}>
-                                            {student.status}
-                                        </span>
-                                    </td>
-                                    <td>{student.lastActive}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </main>
-        </div>
+        </AdminLayout>
     )
 }

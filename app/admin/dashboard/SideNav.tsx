@@ -34,7 +34,7 @@ export default function SideNav() {
         setTitleSize("10.65vw");
     };
 
-    const [role, setRole] = useState<'head' | 'branch' | null>(null);
+    const [role, setRole] = useState<'head' | 'branch' | 'root' | null>(null);
 
     const linkStyle = {
         padding: '8px 8px 8px 32px',
@@ -59,9 +59,16 @@ export default function SideNav() {
         };
 
         const checkRole = () => {
-            if (localStorage.getItem('isHeadAdminLoggedIn') === 'true') {
+            const adminRole = localStorage.getItem('adminRole');
+            const isRootAdminLoggedIn = localStorage.getItem('isRootAdmin');
+            const isHeadAdminLoggedIn = localStorage.getItem('isHeadAdminLoggedIn');
+            const isBranchAdminLoggedIn = localStorage.getItem('isBranchAdmin');
+            
+            if (adminRole === 'ROOT' || isRootAdminLoggedIn === 'true') {
+                setRole('root');
+            } else if (isHeadAdminLoggedIn === 'true') {
                 setRole('head');
-            } else if (localStorage.getItem('isBranchAdmin') === 'true') {
+            } else if (isBranchAdminLoggedIn === 'true') {
                 setRole('branch');
             }
         };
@@ -92,10 +99,26 @@ export default function SideNav() {
                     &times; Close
                 </button>
                 <div style={{ padding: '20px', color: 'white' }}>
-                    <h3 style={{ padding: '0 32px', color: '#aaa', fontSize: '18px', borderBottom: '1px solid #555', paddingBottom: '10px' }}>Monthly Expenses</h3>
+                    {role === 'root' && (
+                        <>
+                            <h3 style={{ padding: '0 32px', color: '#aaa', fontSize: '18px', borderBottom: '1px solid #555', paddingBottom: '10px', marginBottom: '15px' }}>Navigation</h3>
+                            <a href="/admin/dashboard" style={linkStyle}>📊 Dashboard</a>
+                            <a href="/admin/students" style={linkStyle}>👥 All Student Records</a>
+                            <h3 style={{ padding: '0 32px', color: '#aaa', fontSize: '18px', borderBottom: '1px solid #555', paddingBottom: '10px', marginTop: '20px', marginBottom: '15px' }}>Monthly Expenses</h3>
+                            <a href="/admin/expenses/incharge-salary" style={linkStyle}>Branch Incharge Salary</a>
+                            <a href="/admin/expenses/shop-rent" style={linkStyle}>Shop Rent (All)</a>
+                            <a href="/admin/expenses/electricity" style={linkStyle}>Electricity Bill (All)</a>
+                            <a href="/admin/expenses/instruments" style={linkStyle}>Instruments List (All)</a>
+                            <a href="/admin/expenses/teachers-salary" style={linkStyle}>Teachers Salary (All-Branches)</a>
+                        </>
+                    )}
 
                     {role === 'branch' && (
                         <>
+                            <h3 style={{ padding: '0 32px', color: '#aaa', fontSize: '18px', borderBottom: '1px solid #555', paddingBottom: '10px', marginBottom: '15px' }}>Navigation</h3>
+                            <a href="/admin/dashboard" style={linkStyle}>📊 Dashboard</a>
+                            <a href="/admin/students" style={linkStyle}>👥 Student Records</a>
+                            <h3 style={{ padding: '0 32px', color: '#aaa', fontSize: '18px', borderBottom: '1px solid #555', paddingBottom: '10px', marginTop: '20px', marginBottom: '15px' }}>Monthly Expenses</h3>
                             <a href="/admin/expenses/shop-rent" style={linkStyle}>Shop Rent</a>
                             <a href="/admin/expenses/electricity" style={linkStyle}>Electricity Bill</a>
                             <a href="/admin/expenses/instruments" style={linkStyle}>Instruments List</a>
@@ -105,6 +128,7 @@ export default function SideNav() {
 
                     {role === 'head' && (
                         <>
+                            <h3 style={{ padding: '0 32px', color: '#aaa', fontSize: '18px', borderBottom: '1px solid #555', paddingBottom: '10px', marginBottom: '15px' }}>Monthly Expenses</h3>
                             <a href="/admin/expenses/incharge-salary" style={linkStyle}>Branch Incharge Salary</a>
                             <a href="/admin/expenses/shop-rent" style={linkStyle}>Shop Rent (All)</a>
                             <a href="/admin/expenses/electricity" style={linkStyle}>Electricity Bill (All)</a>

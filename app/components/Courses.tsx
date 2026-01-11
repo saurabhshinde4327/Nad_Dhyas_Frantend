@@ -57,10 +57,10 @@ export default function Courses() {
       title: "Bhajan", 
       icon: "", 
       image: "/Logos/7.jpeg",
-      description: "Sing devotional songs and hymns with proper expression and musicality."
+      description: "Sing devotional songs and bhakti geet with proper expression and musicality."
     },
     { 
-      title: "Light Music", 
+      title: "Sugam Sangeet", 
       icon: "", 
       image: "/Logos/11.jpeg",
       description: "Enjoy learning popular and contemporary music styles with modern techniques."

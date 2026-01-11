@@ -1,141 +1,379 @@
 .container {
     min-height: 100vh;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #f5f5f5;
 }
 
 .header {
-    max-width: 1200px;
-    margin: 0 auto 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 30px;
+    padding: 20px;
     background: white;
-    padding: 20px 30px;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .title {
-    color: #8b0000;
     font-size: 28px;
-    font-weight: bold;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 5px 0;
+}
+
+.welcome {
+    color: #666;
     margin: 0;
+    font-size: 14px;
+}
+
+.headerActions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.profileLink {
+    padding: 10px 20px;
+    background: #3b82f6;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.profileLink:hover {
+    background: #2563eb;
 }
 
 .logoutButton {
-    background: #dc3545;
-    color: white;
     padding: 10px 20px;
+    background: #ef4444;
+    color: white;
     border: none;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 600;
+    border-radius: 8px;
+    font-weight: 500;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.2s;
 }
 
 .logoutButton:hover {
-    background: #c82333;
+    background: #dc2626;
 }
 
-.content {
-    max-width: 1200px;
-    margin: 0 auto;
+.feeCards {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
+    margin-bottom: 30px;
 }
 
-.detailsCard,
-.actionsCard {
+.feeCard {
     background: white;
+    padding: 24px;
     border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.cardTitle {
-    color: #8b0000;
-    font-size: 22px;
-    font-weight: bold;
-    margin: 0 0 20px 0;
-    border-bottom: 2px solid #8b0000;
-    padding-bottom: 10px;
-}
-
-.detailsGrid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
-}
-
-.detailItem {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding: 12px;
-    background: #f8f9fa;
-    border-radius: 6px;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.2s;
 }
 
-.label {
-    font-weight: 600;
+.feeCard:hover {
+    transform: translateY(-2px);
+}
+
+.cardIcon {
+    font-size: 48px;
+    flex-shrink: 0;
+}
+
+.cardContent {
+    flex: 1;
+}
+
+.cardLabel {
+    font-size: 14px;
     color: #666;
-    font-size: 13px;
+    margin-bottom: 8px;
 }
 
-.value {
+.cardAmount {
+    font-size: 32px;
+    font-weight: 700;
     color: #333;
-    font-size: 15px;
+    margin-bottom: 4px;
 }
 
-.actions {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.cardSubtext {
+    font-size: 12px;
+    color: #999;
 }
 
-.actionButton {
-    background: #8b0000;
+.paidCard .cardAmount {
+    color: #10b981;
+}
+
+.remainingCard .cardAmount {
+    color: #f59e0b;
+}
+
+.paymentSection {
+    margin-bottom: 30px;
+}
+
+.paymentCard {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.paymentCard.fullPaid {
+    background: #d1fae5;
+    border: 2px solid #10b981;
+}
+
+.sectionTitle {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 8px 0;
+}
+
+.sectionSubtitle {
+    color: #666;
+    margin: 0 0 20px 0;
+}
+
+.payButton {
+    padding: 14px 32px;
+    background: #10b981;
     color: white;
-    padding: 15px 20px;
     border: none;
     border-radius: 8px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s;
-    text-align: left;
+    transition: background 0.2s;
 }
 
-.actionButton:hover {
-    background: #a00000;
+.payButton:hover {
+    background: #059669;
+}
+
+.paymentHistory {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.historyTable {
+    overflow-x: auto;
+    margin-top: 16px;
+}
+
+.historyTable table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.historyTable th {
+    background: #f9fafb;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+    color: #666;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.historyTable td {
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+    color: #333;
+}
+
+.historyTable tbody tr:hover {
+    background: #f9fafb;
 }
 
 .loading,
 .error {
     text-align: center;
-    padding: 40px;
+    padding: 60px 20px;
     font-size: 18px;
     color: #666;
 }
 
 .error {
-    color: #dc3545;
+    color: #ef4444;
 }
 
-@media (max-width: 768px) {
-    .content {
-        grid-template-columns: 1fr;
-    }
-
-    .header {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-    }
+/* Modal Styles */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
 }
 
+.modalContent {
+    background: white;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
 
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    border-bottom: 1px solid #e5e7eb;
+}
 
+.modalHeader h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #666;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.closeButton:hover {
+    background: #f3f4f6;
+}
+
+.paymentForm {
+    padding: 24px;
+}
+
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.formGroup label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.formGroup input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.formGroup input:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+.qrSection {
+    margin: 24px 0;
+    text-align: center;
+}
+
+.qrSection h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 16px 0;
+}
+
+.qrCode {
+    background: #f9fafb;
+    padding: 20px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.qrCode img {
+    max-width: 250px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.formActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.cancelButton {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: white;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cancelButton:hover {
+    background: #f9fafb;
+}
+
+.submitButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background: #10b981;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submitButton:hover:not(:disabled) {
+    background: #059669;
+}
+
+.submitButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

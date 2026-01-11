@@ -1,0 +1,419 @@
+.letterheadContainer {
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.headerSection {
+    margin-bottom: 30px;
+}
+
+.headerSection h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 5px 0;
+}
+
+.headerSection p {
+    color: #666;
+    margin: 0;
+}
+
+.actionsSection {
+    margin-bottom: 30px;
+}
+
+.addButton {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.addButton:hover {
+    background: #2563eb;
+}
+
+.tableSection {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.loading,
+.emptyState {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+}
+
+.emptyState p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.emptySubtext {
+    font-size: 14px !important;
+    color: #999 !important;
+}
+
+.letterheadGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.letterheadCard {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.2s;
+}
+
+.letterheadCard:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.letterheadCard.active {
+    border-color: #10b981;
+    background: #f0fdf4;
+}
+
+.cardHeader {
+    margin-bottom: 12px;
+}
+
+.cardTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.cardTitle h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    flex: 1;
+}
+
+.activeBadge {
+    background: #10b981;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.cardDescription {
+    color: #666;
+    font-size: 14px;
+    margin: 0 0 16px 0;
+    line-height: 1.5;
+}
+
+.cardInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding: 12px;
+    background: #f9fafb;
+    border-radius: 8px;
+}
+
+.infoItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.infoLabel {
+    font-size: 13px;
+    color: #666;
+    font-weight: 500;
+}
+
+.infoValue {
+    font-size: 13px;
+    color: #333;
+    font-weight: 600;
+}
+
+.cardActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 16px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.actionButton {
+    flex: 1;
+    min-width: 100px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: white;
+    color: #333;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.actionButton:hover {
+    background: #f9fafb;
+    border-color: #bbb;
+}
+
+.downloadButton {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}
+
+.downloadButton:hover {
+    background: #2563eb;
+    border-color: #2563eb;
+}
+
+.editButton {
+    background: #f59e0b;
+    color: white;
+    border-color: #f59e0b;
+}
+
+.editButton:hover {
+    background: #d97706;
+    border-color: #d97706;
+}
+
+.deleteButton {
+    background: #ef4444;
+    color: white;
+    border-color: #ef4444;
+}
+
+.deleteButton:hover {
+    background: #dc2626;
+    border-color: #dc2626;
+}
+
+.activateButton {
+    background: #10b981;
+    color: white;
+    border-color: #10b981;
+}
+
+.activateButton:hover {
+    background: #059669;
+    border-color: #059669;
+}
+
+.deactivateButton {
+    background: #f59e0b;
+    color: white;
+    border-color: #f59e0b;
+}
+
+.deactivateButton:hover {
+    background: #d97706;
+    border-color: #d97706;
+}
+
+/* Modal Styles */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modalContent {
+    background: white;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.modalHeader h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #666;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.closeButton:hover {
+    background: #f3f4f6;
+}
+
+.letterheadForm {
+    padding: 24px;
+}
+
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.formGroup label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.formGroup input[type="text"],
+.formGroup textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+.fileInput {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.fileHint {
+    font-size: 12px;
+    color: #666;
+    margin: 6px 0 0 0;
+}
+
+.filePreview {
+    margin-top: 12px;
+}
+
+.filePreview img {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.currentFile {
+    font-size: 13px;
+    color: #666;
+    margin: 8px 0 0 0;
+    padding: 8px;
+    background: #f9fafb;
+    border-radius: 6px;
+}
+
+.checkboxLabel {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.checkboxLabel input[type="checkbox"] {
+    width: auto;
+    cursor: pointer;
+}
+
+.formActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.cancelButton {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: white;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cancelButton:hover {
+    background: #f9fafb;
+}
+
+.submitButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background: #3b82f6;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submitButton:hover:not(:disabled) {
+    background: #2563eb;
+}
+
+.submitButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

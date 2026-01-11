@@ -1,3 +1,160 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./app/components/ScrollAnimation.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
+.ScrollAnimation_scrollAnimation__BCueD {
+  opacity: 0;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.ScrollAnimation_scrollAnimation__BCueD.ScrollAnimation_visible__8Li7k {
+  opacity: 1;
+}
+
+/* Fade In Up Animation */
+.ScrollAnimation_fadeInUp__z52mJ {
+  transform: translateY(50px);
+}
+
+.ScrollAnimation_fadeInUp__z52mJ.ScrollAnimation_visible__8Li7k {
+  transform: translateY(0);
+  animation: ScrollAnimation_fadeInUp__z52mJ 0.6s ease-out forwards;
+}
+
+/* Fade In Left Animation */
+.ScrollAnimation_fadeInLeft__7bvS_ {
+  transform: translateX(-50px);
+}
+
+.ScrollAnimation_fadeInLeft__7bvS_.ScrollAnimation_visible__8Li7k {
+  transform: translateX(0);
+  animation: ScrollAnimation_fadeInLeft__7bvS_ 0.6s ease-out forwards;
+}
+
+/* Fade In Right Animation */
+.ScrollAnimation_fadeInRight__xM_sX {
+  transform: translateX(50px);
+}
+
+.ScrollAnimation_fadeInRight__xM_sX.ScrollAnimation_visible__8Li7k {
+  transform: translateX(0);
+  animation: ScrollAnimation_fadeInRight__xM_sX 0.6s ease-out forwards;
+}
+
+/* Fade In Animation */
+.ScrollAnimation_fadeIn__Ercj0 {
+  opacity: 0;
+}
+
+.ScrollAnimation_fadeIn__Ercj0.ScrollAnimation_visible__8Li7k {
+  animation: ScrollAnimation_fadeIn__Ercj0 0.6s ease-out forwards;
+}
+
+/* Zoom In Animation */
+.ScrollAnimation_zoomIn__VwHN2 {
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+.ScrollAnimation_zoomIn__VwHN2.ScrollAnimation_visible__8Li7k {
+  transform: scale(1);
+  opacity: 1;
+  animation: ScrollAnimation_zoomIn__VwHN2 0.6s ease-out forwards;
+}
+
+/* Keyframe Animations */
+@keyframes ScrollAnimation_fadeInUp__z52mJ {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ScrollAnimation_fadeInLeft__7bvS_ {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes ScrollAnimation_fadeInRight__xM_sX {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes ScrollAnimation_fadeIn__Ercj0 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ScrollAnimation_zoomIn__VwHN2 {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Staggered animations for multiple items */
+.ScrollAnimation_scrollAnimation__BCueD:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.ScrollAnimation_scrollAnimation__BCueD:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.ScrollAnimation_scrollAnimation__BCueD:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.ScrollAnimation_scrollAnimation__BCueD:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.ScrollAnimation_scrollAnimation__BCueD:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.ScrollAnimation_scrollAnimation__BCueD:nth-child(6) {
+  animation-delay: 0.5s;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .ScrollAnimation_fadeInUp__z52mJ,
+  .ScrollAnimation_fadeInLeft__7bvS_,
+  .ScrollAnimation_fadeInRight__xM_sX {
+    transform: translateY(30px);
+  }
+
+  .ScrollAnimation_fadeInLeft__7bvS_.ScrollAnimation_visible__8Li7k,
+  .ScrollAnimation_fadeInRight__xM_sX.ScrollAnimation_visible__8Li7k {
+    transform: translateY(0);
+  }
+}
+
+
 /*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./app/components/Courses.module.css ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************/
@@ -661,14 +818,38 @@
 }
 
 .Header_logo__pvkJ9 {
-  display: flex;
+  display: flex !important;
   align-items: center;
   flex-shrink: 0;
+  gap: 12px;
+  visibility: visible;
+  opacity: 1;
 }
 
 .Header_logoImage__Yeb3d {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
   object-fit: contain;
+  width: 100px;
   height: auto;
+  max-width: 100%;
+  min-width: 80px;
+  min-height: 60px;
+}
+
+.Header_logoText__CW1Mz {
+  display: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #c12727 0%, #ff6b6b 50%, #ffa500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(193, 39, 39, 0.3);
+  white-space: nowrap;
+  font-family: 'Arial', sans-serif;
 }
 
 .Header_nav__NNkX_ {
@@ -786,6 +967,25 @@
   transition: all 0.3s ease;
 }
 
+/* Desktop view - hide logo */
+@media (min-width: 769px) {
+  .Header_logo__pvkJ9 {
+    display: none !important;
+  }
+
+  .Header_logoImage__Yeb3d {
+    display: none !important;
+  }
+
+  .Header_logoText__CW1Mz {
+    display: none !important;
+  }
+
+  .Header_closeButton__t_zSV {
+    display: none !important;
+  }
+}
+
 @media (max-width: 768px) {
   .Header_topBar__jxKrR {
     padding: 4px 0;
@@ -823,15 +1023,44 @@
 
   .Header_headerContainer__4sSg6 {
     padding: 8px 15px;
+    justify-content: space-between;
+  }
+
+  .Header_logo__pvkJ9 {
+    order: 1;
+    gap: 10px;
+    display: flex !important;
   }
 
   .Header_logoImage__Yeb3d {
-    width: 80px;
-    height: 80px;
+    display: none !important;
+  }
+
+  .Header_logoText__CW1Mz {
+    display: block !important;
+    font-size: 1.3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #c12727 0%, #ff6b6b 50%, #ffa500 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1px;
+    animation: Header_textGlow__h62ZB 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes Header_textGlow__h62ZB {
+    0% {
+      filter: brightness(1);
+    }
+    100% {
+      filter: brightness(1.2);
+    }
   }
 
   .Header_menuToggle__2Vp6Y {
     display: flex;
+    order: 2;
+    margin-left: auto;
   }
 
   .Header_menuToggle__2Vp6Y span {
@@ -840,24 +1069,26 @@
   }
 
   .Header_nav__NNkX_ {
-    position: absolute;
-    top: 100%;
-    left: 0;
+    position: fixed;
+    top: 0;
     right: 0;
+    width: 280px;
+    height: 100vh;
     background: #2c2c2c;
     flex-direction: column;
-    padding: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transform: translateY(-100%);
-    opacity: 0;
+    padding: 60px 20px 20px 20px;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+    transform: translateX(100%);
+    opacity: 1;
     pointer-events: none;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
     gap: 12px;
+    z-index: 1000;
+    overflow-y: auto;
   }
 
   .Header_navOpen__ABtIc {
-    transform: translateY(0);
-    opacity: 1;
+    transform: translateX(0);
     pointer-events: all;
   }
 
@@ -881,6 +1112,42 @@
     text-align: center;
     padding: 8px 16px;
     font-size: 0.85rem;
+  }
+
+  .Header_backdrop__StnBn {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
+  }
+
+  .Header_closeButton__t_zSV {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    color: var(--white);
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 5px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+  }
+
+  .Header_closeButton__t_zSV:hover {
+    background: rgba(255, 255, 255, 0.1);
   }
 }
 /*!**************************************************************************************************************************************************************************************************************************************************************************!*\

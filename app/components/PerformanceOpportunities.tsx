@@ -37,7 +37,7 @@ export default function PerformanceOpportunities() {
               Performance Opportunities
               </h2>
               <p className={styles.performanceSubtitle}>
-              At Swargufan, learning goes beyond the classroom.<br/>
+              At Swargumphan, learning goes beyond the classroom.<br/>
                 
               </p>
               <p className={styles.performanceDescription}>
