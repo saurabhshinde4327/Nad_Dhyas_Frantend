@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import styles from './Header.module.css'
 
 export default function Header({ transparent = false }: { transparent?: boolean }) {
@@ -26,6 +27,17 @@ export default function Header({ transparent = false }: { transparent?: boolean 
       </div>
       <div className={`${styles.navbar} ${transparent ? styles.transparentBg : ''}`}>
         <div className={`container ${styles.headerContainer}`}>
+          <div className={styles.logo}>
+            <Image
+              src="/Logo.png"
+              alt="Logo"
+              width={100}
+              height={100}
+              className={styles.logoImage}
+              priority
+            />
+            <span className={styles.logoText}>SWARGUMPHAN</span>
+          </div>
           <button
             className={styles.menuToggle}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -36,28 +48,41 @@ export default function Header({ transparent = false }: { transparent?: boolean 
             <span></span>
           </button>
 
+          {isMenuOpen && (
+            <div 
+              className={styles.backdrop}
+              onClick={() => setIsMenuOpen(false)}
+            ></div>
+          )}
           <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
-            <a href="#home" className={styles.navLink}>Home</a>
+            <button
+              className={styles.closeButton}
+              onClick={() => setIsMenuOpen(false)}
+              aria-label="Close menu"
+            >
+              ×
+            </button>
+            <a href="#home" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Home</a>
             <div
               className={styles.dropdown}
               onMouseEnter={() => setIsCoursesOpen(true)}
               onMouseLeave={() => setIsCoursesOpen(false)}
             >
-              <a href="#courses" className={styles.navLink}>
+              <a href="#courses" className={styles.navLink} onClick={() => setIsCoursesOpen(!isCoursesOpen)}>
                 Courses
                 <span className={styles.dropdownArrow}>▼</span>
               </a>
               {isCoursesOpen && (
                 <div className={styles.dropdownMenu}>
-                  <a href="#online-courses" className={styles.dropdownItem}>Online Courses</a>
-                  <a href="#offline-courses" className={styles.dropdownItem}>Offline Courses</a>
+                  <a href="#online-courses" className={styles.dropdownItem} onClick={() => setIsMenuOpen(false)}>Online Courses</a>
+                  <a href="#offline-courses" className={styles.dropdownItem} onClick={() => setIsMenuOpen(false)}>Offline Courses</a>
                 </div>
               )}
             </div>
-            <a href="#events" className={styles.navLink}>Events</a>
-            <a href="#about" className={styles.navLink}>About</a>
-            <Link href="/register" className={styles.admissionBtn}>Take a Admission</Link>
-            <Link href="/login" className={styles.admissionBtn}>Login</Link>
+            <a href="#events" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Events</a>
+            <a href="#about" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>About</a>
+            <Link href="/register" className={styles.admissionBtn} onClick={() => setIsMenuOpen(false)}>Take a Admission</Link>
+            <Link href="/login" className={styles.admissionBtn} onClick={() => setIsMenuOpen(false)}>Login</Link>
           </nav>
         </div>
       </div>
