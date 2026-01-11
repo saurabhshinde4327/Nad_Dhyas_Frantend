@@ -1,49 +1,58 @@
-import mongoose from 'mongoose';
+// Mongoose removed - using backend API instead
+// import mongoose from 'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/swargufan';
+// const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/swargufan';
 
-if (!MONGODB_URI) {
-    throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
-}
+// if (!MONGODB_URI) {
+//     throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
+// }
 
-interface Cached {
-    conn: mongoose.Connection | null;
-    promise: Promise<mongoose.Connection> | null;
-}
+// interface Cached {
+//     conn: mongoose.Connection | null;
+//     promise: Promise<mongoose.Connection> | null;
+// }
 
-declare global {
-    var mongoose: Cached;
-}
+// declare global {
+//     var mongoose: Cached;
+// }
 
-let cached = global.mongoose;
+// let cached = global.mongoose;
 
-if (!cached) {
-    cached = global.mongoose = { conn: null, promise: null };
-}
+// if (!cached) {
+//     cached = global.mongoose = { conn: null, promise: null };
+// }
 
+// async function dbConnect() {
+//     if (cached.conn) {
+//         return cached.conn;
+//     }
+
+//     if (!cached.promise) {
+//         const opts = {
+//             bufferCommands: false,
+//         };
+
+//         cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
+//             return mongoose.connection;
+//         });
+//     }
+
+//     try {
+//         cached.conn = await cached.promise;
+//     } catch (e) {
+//         cached.promise = null;
+//         throw e;
+//     }
+
+//     return cached.conn;
+// }
+
+// export default dbConnect;
+
+// Placeholder function - using backend API instead
 async function dbConnect() {
-    if (cached.conn) {
-        return cached.conn;
-    }
-
-    if (!cached.promise) {
-        const opts = {
-            bufferCommands: false,
-        };
-
-        cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-            return mongoose.connection;
-        });
-    }
-
-    try {
-        cached.conn = await cached.promise;
-    } catch (e) {
-        cached.promise = null;
-        throw e;
-    }
-
-    return cached.conn;
+    // Database connection handled by backend API
+    return null;
 }
 
 export default dbConnect;
